@@ -1,0 +1,87 @@
+{{!-- <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+    <div class="container">
+        <a class="navbar-brand" href="/">ExamGen</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Video
+                        Tests</a>
+                    <div class="dropdown-menu">
+                        <a href="/tests" class="dropdown-item">Tests</a>
+                        <a href="/tests/add" class="dropdown-item">Add Test</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Logout</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> --}}
+
+{{#if user}}
+<!-- header pr le prof -->
+<header class="ui massive pointing secondary menu green biad">
+    <div class="container ui">
+        <a class=" item">
+            <h3>
+                Home
+            </h3>
+        </a>
+        <a class="item">
+            Profile
+        </a>
+        <a class="active item" href="/tests">
+            Tests
+        </a>
+        <div class="right menu">
+            <div class="item">
+                <a class="ui grey button  " href="/users/logout">Déconnexion
+                    <i class="External Alternate icon right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+{{else}}
+
+<header class="ui massive pointing secondary menu green biad">
+    <div class="container ui">
+        <a class="active item">
+            <h3>ExamGen</h3>
+        </a>
+        <div class="right menu">
+            <div class="item">
+                <a class="ui green inverted button  " href="/users/register">Inscription
+                    <i class="plus right icon"></i>
+                </a>
+            </div>
+            <div class="item">
+                <a class="ui green button " href="/users/login">Connexion
+                    <i class="user right icon"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+{{/if}}

@@ -1,0 +1,104 @@
+{{!-- {{#each tests}}
+<div class="card card-body mb-2">
+  <h4>{{title}}</h4>
+  <p>{{details}}</p>
+  <a class="btn btn-dark btn-block mb-2" href="/tests/edit/{{id}}">Edit</a>
+  <form method="post" action="/tests/{{id}}?_method=DELETE">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" class="btn btn-danger btn-block" value="Delete">
+  </form>
+</div>
+{{else}}
+<p>No video tests listed</p>
+{{/each}} --}}
+
+<section class="grey column">
+  <div class="ui container">
+    <div class="ui grid">
+      <div class="row ">
+        <a href="/tests/add" class="circular ui huge icon button green" data-inverted="" data-tooltip="Ajouter un nouveau test"
+          data-position="right center">
+          <i class="icon plus"></i>
+        </a>
+        <div class="right floated right aligned six wide column">
+          <div class="ui ">
+            <div class="ui  search ">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Chercher un test...">
+                <i class="search icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hna les cartes -->
+      <div class="stretched four column row stackable cards">
+
+        {{#each tests}}
+
+        <div class="column">
+          {{#if isActive}}
+          <div class="card green ui segment">
+          {{else}}
+          <div class="card red ui segment">
+          {{/if}}
+            <div class="content">
+              <div class="header">{{nom}}
+                <span class="right floated">
+                  <i class="stopwatch icon"></i>
+{{duree}}min
+                </span>
+              </div>
+              <div class="description">
+                12 Nov 2018
+                {{date}}
+              </div>
+            </div>
+            <div class="extra content">
+              <a class="mini ui right floated primary basic button icon" href="">
+                <i class="ellipsis horizontal icon"></i>
+              </a>
+              <i class="clipboard icon"></i>
+              0 Questions
+              <span> ({{questions}})</span>
+            </div>
+            <div class="extra content">
+              <a class="mini ui right floated primary basic button icon" href="">
+                <i class="ellipsis horizontal icon"></i>
+              </a>
+              <i class="circle icon"></i>
+              0 réponses reçus
+            </div>
+            <div class="ui buttons two ">
+              <a href="/tests/details/{{id}}" class="ui green button">Afficher</a>
+
+              <a class="ui button icon" href="/tests/edit/{{id}}" >
+                <i class="icon pencil alternate center"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {{else}}
+        <p>Utiliser le bouton
+          <span class="circular ui icon button green ">
+            <i class="icon plus"></i>
+          </span>
+          pour ajouter des tests</p>
+        {{/each}}
+      </div>
+
+
+    </div>
+  </div>
+</section>
+<script>
+
+  var tests = [
+  {{#each tests}}
+    { title: '{{nom}}' },
+{{/each}}
+    // etc
+  ];
+
+</script>

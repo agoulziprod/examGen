@@ -1,0 +1,59 @@
+<section class="body grey column">
+    <div class="ui container">
+        <!-- hna les cartes -->
+        <div class="column ui grid">
+            <div class="row"></div>
+        </div>
+        <div class="sixteen wide column">
+            <div class="ui segment green center aligned">
+                <h3 class="">Création d'un nouveau test</h3>
+                <div class="ui segment  left aligned">
+                    <form class="ui form" action="/tests" method="post">
+                        <div class="field">
+                            <label>Nom du test</label>
+                            <input type="text" placeholder="nom" name="nom">
+                        </div>
+                        <div class="inline fields">
+                            <label>Durée du test</label>
+                            <div class="field">
+                                <input type="number" placeholder="heures" min="0" name="dureeH">
+                            </div>
+                            <div class="field">
+                                <input type="number" placeholder="minutes" min="0" name="dureeM">
+                            </div>
+                            <label>Nombre de questions</label>
+                            <div class="field">
+                                <input type="number" placeholder="" min="1" value="1" name="questions">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Message début</label>
+                            <textarea name="messageDebut" rows="2" data-gramm="true" name="" spellcheck="false" style="z-index: auto; position: relative; line-height: 17.9998px; font-size: 14px; transition: none 0s ease 0s; background: transparent !important;"></textarea>
+                        </div>
+                        <div class="field">
+                            <label>Message Fin</label>
+                            <textarea name="messageFin" rows="2" data-gramm="true" name="" spellcheck="false" style="z-index: auto; position: relative; line-height: 17.9998px; font-size: 14px; transition: none 0s ease 0s; background: transparent !important;"></textarea>
+                        </div>
+                        <div class="ui form">
+                            <div class="inline field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" tabindex="0" class="hidden" checked name="isActive">
+                                    <label>Test active</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui form">
+                            <div class="inline field">
+                                <button class="ui button" type="submit">Ajouter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>

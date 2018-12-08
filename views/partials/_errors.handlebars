@@ -1,0 +1,31 @@
+{{#if error}}
+<div class="ui container">
+  <div class="ui red message transition ">
+    <i class="close icon"></i>
+    <div class="header">
+      Emm
+    </div>
+    <p>{{error}}</p>
+  </div>
+</div>
+<div class="ui container grid">
+  <div class="row"></div>
+</div>
+{{/if}}
+{{#if errors}}
+<div class="ui container">
+  <div class="ui red message transition ">
+    <i class="close icon"></i>
+    <div class="header">
+      Emm
+    </div>
+    {{#each errors}}
+    <p>{{text}}</p>
+    {{/each}}
+  </div>
+</div>
+<div class="ui container grid">
+  <div class="row"></div>
+</div>
+
+{{/if}}

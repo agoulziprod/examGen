@@ -1,0 +1,27 @@
+<div class="container ui two column centered grid ">
+  <div class="row"></div>
+  <div class="column ui segment">
+    <h2 class="ui header">Inscription</h2>
+    <div class="ui clearing divider"></div>
+    <form class="ui form" action="/users/register" method="post">
+      <div class="field required">
+        <label>Nom</label>
+        <input type="text" name="name" placeholder="nom" required>
+      </div>
+      <div class="field required">
+        <label>Email</label>
+        <input type="email" type="email" name="email" placeholder="email" required>
+      </div>
+      <div class="field required">
+        <label>Mot de passe</label>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+      </div>
+      <div class="field required">
+        <label>Répeter le mot de passe</label>
+        <input type="password" name="password2" placeholder="répeter le mot de passe" required>
+      </div>
+      <button class="ui button green" type="submit">S'inscrire</button>
+      <button class="ui button " type="reset">vider les champs</button>
+    </form>
+  </div>
+</div>

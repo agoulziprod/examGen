@@ -1,0 +1,32 @@
+{{#if success_msg}}
+<div class="ui container body">
+  <div class="ui green message transition ">
+    <i class="close icon"></i>
+    <div class="header">
+      Action réussite
+    </div>
+    <p>{{success_msg}}</p>
+  </div>
+</div>
+<div class="ui container grid">
+  <div class="row"></div>
+</div>
+
+{{/if}}
+
+{{#if error_msg}}
+<div class="ui container body">
+  <div class="ui red message transition ">
+    <i class="close icon"></i>
+    <div class="header">
+      Emm
+    </div>
+    <p>{{error_msg}}</p>
+  </div>
+</div>
+<div class="ui container grid">
+  <div class="row"></div>
+</div>
+
+
+{{/if}}
