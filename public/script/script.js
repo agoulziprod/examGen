@@ -33,19 +33,6 @@
 //     source: tests
 //   })
 // ;
-$('.ui.search')
-  .search({
-
-    source: tests
-    ,
-    apiSettings: {
-      url: '//api.github.com/search/repositories?q={query}'
-    },
-    fields: {
-      url: '//api.github.com/search/repositories?q={query}'
-    },
-    minCharacters: 3
-  });
 
 
 // initialize message close o dkchi
@@ -62,3 +49,17 @@ $('.message .close')
 $('.ui.checkbox')
   .checkbox()
   ;
+  
+  $('.ui.search')
+  .search({
+
+    source: tests
+    ,
+    apiSettings: {
+      url: '//api.github.com/search/repositories?q={query}'
+    },
+    fields: {
+      url: '//api.github.com/search/repositories?q={query}'
+    },
+    minCharacters: 3
+  });
