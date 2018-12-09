@@ -17,20 +17,17 @@ router.get('/', ensureAuthenticated, (req, res) => {
       res.render('tests/index', {
         tests: tests
       });
+//i wanna retreive the value of : how much every test have 
+
       // Question.find({ test: req.params.id })
       //   .sort({ date: 'desc' })
       //   .then(questions => {
-
       //     tests.forEach(function (test) {
       //       questions.forEach(function (question) {
       //         if (test._id == question.test)
       //           tests.questionsAdded++;
       //       })
-
       //     });
-
-
-
     });
 });
 
@@ -69,10 +66,16 @@ router.get('/details/:id', ensureAuthenticated, (req, res) => {
         req.flash('error_msg', `vous n'etes pas autorisé !`);
         res.redirect('/tests');
       } else {
-        console.log(test);
-        res.render('tests/details', {
-          test: test
-        });
+        // console.log(test);
+        Question.find({ test: req.params.id })
+          .sort({ date: 'desc' })
+          .then(questions => {
+            res.render('tests/details', {
+              test: test,
+              question:questions
+            });
+          });
+        
       }
 
     });
