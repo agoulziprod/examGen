@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const {ensureAuthenticated} = require('../helpers/auth');
 
-// Load Test Model
+// Load Test  and Question Model
 require('../models/Test');
 const Test = mongoose.model('tests');
+require('../models/Question');
+const Question = mongoose.model('question');
 
 
 // Test Index Page
@@ -18,6 +20,34 @@ router.get('/', ensureAuthenticated, (req, res) => {
       });
     });
 });
+
+// Question index page
+router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
+
+  Test.findOne({
+    _id: req.params.id
+  })
+  .then(test => {
+    if(test.creator != req.user.id){
+      req.flash('error_msg', `vous n'etes pas autorisé !`);
+      res.redirect('/tests');
+    } else {
+      // now fetching the questions
+      Question.find({test: req.params.id})
+      .sort({date:'desc'})
+      .then(qestions => {
+        res.render('questions/index', {
+          qestions:qestions,
+          test:test
+        });
+      });
+    }
+    
+  });
+
+ 
+});
+
 // Test details page
 router.get('/details/:id', ensureAuthenticated, (req, res) => {
   Test.findOne({

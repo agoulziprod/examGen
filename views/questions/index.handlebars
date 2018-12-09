@@ -1,0 +1,64 @@
+<section class="body grey column">
+  <div class="ui container">
+    <div class="ui segment">
+      <h2 class="ui   header">Test : {{test.nom}}
+        <form method="post" action="/tests/{{test.id}}?_method=DELETE">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="ui button right floated red">
+            <i class="icon trash center"></i> Supprimer le test
+          </button>
+        </form>
+        <a class="ui button right floated" href="/tests/edit/{{test.id}}">
+          <i class="icon pencil alternate center"></i> Modifier le test
+        </a>
+      </h2>
+      <div class="ui clearing divider"></div>
+      <p></p>
+      <div class="ui top attached tabular menu ">
+        <a class="item" href="/tests/details/{{test.id}}">
+          Test
+        </a>
+        <a class="item active">
+          Questions
+        </a>
+        <a class="item" href="/tests/details/{{test.id}}/responces">
+          Réponses reçues
+        </a>
+      </div>
+      <div class="ui bottom attached segment">
+        <div class="ui tall stacked segment">
+          <a class="ui green ribbon label">1</a>
+          <h4 class="ui header">
+            Question:
+            <div class="sub header">est ce que ca va ?</div>
+          </h4>
+          <h4 class="ui header">
+            Réponses sont ordonnée?
+            <div class="sub header">false</div>
+          </h4>
+          <h4 class="ui header">
+            Liste des Réponses:
+            <div class="sub header">est ce que ca va ?</div>
+            <div class="sub header">est ce que ca va ?</div>
+            <div class="sub header">est ce que ca va ?</div>
+          </h4>
+
+<div class="ui clearing segment">
+           <a class="ui button left floated" href="/questions/edit/{{test.id}}">
+          <i class="icon pencil alternate center"></i> Modifier la question
+        </a>
+        <form method="post" action="/questions/{{question.id}}?_method=DELETE">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="ui button left floated red">
+            <i class="icon trash center"></i> Supprimer la question
+          </button>
+        </form>
+        
+        </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>

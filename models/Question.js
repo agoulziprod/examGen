@@ -14,7 +14,7 @@ const Question = new Schema({
     },
     type: {
         required: true,
-        type: string,
+        type: String,
         default: 'radio'
     },
     creator: {
