@@ -35,15 +35,12 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
       req.flash('error_msg', `vous n'etes pas autorisé !`);
       res.redirect('/tests');
     } else {
-      let coucou='skrrr';
-      const a=Question.find({test: req.params.id});
-       // now fetching the questions
        Question.find({test: req.params.id})
       .sort({date:'desc'})
        .then(questions => {
-         console.log(questions);
          res.render('questions/index', {
-           c:questions
+           question:questions,
+           test:test
          });
         
        });

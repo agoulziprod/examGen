@@ -62,8 +62,8 @@
             </div>
           </form>
         </div>
-        {{cc}}
-        {{#each c}}
+        
+        {{#each question}}
         <div class="ui tall stacked segment">
 
           <a class="ui green ribbon label">{{@index}}</a>
@@ -72,13 +72,34 @@
             <div class="sub header">{{question}}?</div>
           </h4>
           <h4 class="ui header">
-            Réponses sont ordonnée?
+            Réponses sont ordonnées?
             <div class="sub header">{{hasOrder}}</div>
           </h4>
           <h4 class="ui header">
             Liste des Réponses:
-            <div class="sub header">est ce que ca va ?</div>
-            
+            <br>
+            <div class="ui middle aligned divided list">
+              <div class="item">
+                <div class="right floated content">
+                  <a class="ui basic button">Modifier</a>
+                  <a class="ui basic button red">Supprimer</a>
+                </div>
+                <div class="content">
+                  <div class="ui red horizontal label">faux</div>
+                  hna la réponses number 1 
+                </div>
+              </div>
+               <div class="item">
+                <div class="right floated content">
+                  <a class="ui button">Modifier</a>
+                  <a class="ui button red">Supprimer</a>
+                </div>
+                <div class="content">
+                  <div class="ui green horizontal label">vrai</div>
+                  hna la réponses number 2 etc
+                </div>
+              </div>
+            </div>
           </h4>
 
           <div class="ui clearing segment">
