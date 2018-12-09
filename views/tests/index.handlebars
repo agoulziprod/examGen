@@ -58,7 +58,7 @@
                   <i class="ellipsis horizontal icon"></i>
                 </a>
                 <i class="clipboard icon"></i>
-                {{nbrQuestion}} Questions
+                {{questionsAdded}} Questions
                 <span> ({{questions}})</span>
               </div>
               <div class="extra content">
@@ -94,12 +94,11 @@
 <script>
 
   var tests = [
-    {{ #each tests }}
+    {{#each tests }}
   { title: '{{nom}}' },
-  {
-    {
-      /each}}
+       {{/each}}
     // etc
-  ];
+  ]; 
+ 
 
 </script>

@@ -14,21 +14,22 @@ router.get('/', ensureAuthenticated, (req, res) => {
   Test.find({ creator: req.user.id })
     .sort({ date: 'desc' })
     .then(tests => {
-      Question.find({ test: req.params.id })
-        .sort({ date: 'desc' })
-        .then(questions => {
+      res.render('tests/index', {
+        tests: tests
+      });
+      // Question.find({ test: req.params.id })
+      //   .sort({ date: 'desc' })
+      //   .then(questions => {
 
-          tests.forEach(element => {
-            questions.forEach(qel=>{
-              if(element._id==questions.test)
-              element.nbrQuestion=questions.length
-            })
-          });
-          res.render('tests/index', {
-            tests: tests
-            
-          });
-        });
+      //     tests.forEach(function (test) {
+      //       questions.forEach(function (question) {
+      //         if (test._id == question.test)
+      //           tests.questionsAdded++;
+      //       })
+
+      //     });
+
+
 
     });
 });
