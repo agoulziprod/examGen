@@ -20,9 +20,11 @@
         </a>
         <a class="item active">
           Questions
+          <span class="ui green horizontal label">12</span>
         </a>
-        <a class="item" href="/tests/details/{{test.id}}/responces">
+        <a class="item" href="/tests/details/{{test.id}}/responses">
           Réponses reçues
+          <span class="ui primary horizontal label">12</span>
         </a>
       </div>
       <div class="ui bottom attached segment">
@@ -31,15 +33,17 @@
             Ajouter une question au test
           </h3>
           <form class="ui form" action="/questions/" method="post">
+            <input type="hidden" name="test" value="{{test.id}}">
+
             <div class="field">
               <label>La question</label>
               <input type="text" placeholder="question" name="question">
             </div>
             <div class="field">
               <label>Type</label>
-              <select class="ui dropdown ">
+              <select class="ui dropdown " name="type">
                 <i class="dropdown icon"></i>
-                <option value="checkbox">multi choix</option>
+                <option value="checkbox" selected="selected">multi choix</option>
                 <option value="radio">radio: une seule choix sera vrai</option>
               </select>
             </div>
@@ -58,11 +62,13 @@
             </div>
           </form>
         </div>
+        {{#each question}}
         <div class="ui tall stacked segment">
+
           <a class="ui green ribbon label">1</a>
           <h4 class="ui header">
             Question:
-            <div class="sub header">est ce que ca va ?</div>
+            <div class="sub header">{{question.question}}?</div>
           </h4>
           <h4 class="ui header">
             Réponses sont ordonnée?
@@ -88,6 +94,7 @@
 
           </div>
         </div>
+        {{/each}}
 
 
       </div>

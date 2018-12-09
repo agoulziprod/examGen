@@ -18,44 +18,48 @@
         <a class="item active">
           Test
         </a>
-        <a class="item" href="/tests/details/{{test.id}}/questions"> 
+        <a class="item" href="/tests/details/{{test.id}}/questions">
           Questions
+          <span class="ui primary horizontal label">12</span>
+
         </a>
-        <a class="item" href="/tests/details/{{test.id}}/responces">
+        <a class="item" href="/tests/details/{{test.id}}/responses">
           Réponses reçues
+          <span class="ui primary horizontal label">12</span>
+
         </a>
       </div>
       <div class="ui bottom attached segment">
 
-         <h4 class="ui header">
-         Id:
+        <h4 class="ui header">
+          Id:
           <div class="sub header">{{test.id}}</div>
         </h4>
         <h4 class="ui header">
-         Nom:
+          Nom:
           <div class="sub header">{{test.nom}}</div>
         </h4>
-         <h4 class="ui header">
-         Durée en minute:
+        <h4 class="ui header">
+          Durée en minute:
           <div class="sub header">{{test.duree}}</div>
         </h4>
-         <h4 class="ui header">
-         Status:
+        <h4 class="ui header">
+          Status:
           <div class="sub header">{{test.isActive}}</div>
         </h4>
-         <h4 class="ui header">
-         Message fin:
+        <h4 class="ui header">
+          Message fin:
           <div class="sub header">{{test.messageDebut}}</div>
         </h4>
-         <h4 class="ui header">
-         Message fin:
+        <h4 class="ui header">
+          Message fin:
           <div class="sub header">{{test.messageFin}}</div>
         </h4>
         <h4 class="ui header">
-         Date de création:
+          Date de création:
           <div class="sub header">{{test.date}}</div>
         </h4>
-        
+
 
       </div>
     </div>

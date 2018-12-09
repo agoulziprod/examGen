@@ -16,57 +16,60 @@ const Question = mongoose.model('question');
 // Process Add Form
 
 router.post('/', ensureAuthenticated, (req, res) => {
-    // console.log('tfa7aa');
-    // res.send('ok rak nadi');
 
     let errors = [];
   
     if(!req.body.question){
       errors.push({text:`veuillez ajouter un question à votre question`});
     }
-    if(!req.body.questions){
-      errors.push({text:`veuillez ajouter un nombre de questions à votre test`});
+    // if(!req.body.hasOrder){
+    //   errors.push({text:`veuillez indiquer si votre test contient des réponses ordonnées ou pas`});
+    // }
+    if(!req.body.type){
+      errors.push({text:`veuillez choisr le type de votre test`});
     }
-    if(!req.body.messageDebut){
-      errors.push({text:`veuillez ajouter un message de début à votre test`});
-    }
-    if(!req.body.messageFin){
-      errors.push({text:`veuillez ajouter un message de fin à votre test`});
+    if(!req.body.test){
+      errors.push({text:`veuillez ajouter une question à un test valide`});
     }
    
+    console.log(`hna console loging :`);
+    console.log(`question: ${req.body.question}`);
+    console.log(`hasOrder: ${req.body.hasOrder}`);
+    console.log(`type: ${req.body.type}`);
+    console.log(`test: ${req.body.test}`);
     // hna les verifications 3la les inputs
   
     if(errors.length > 0){
-      res.render('/add', {
+        console.log(`tl3o des errors hna`)
+
+      /*res.render('questions/index', {
         errors: errors,
-        nom: req.body.nom,
-        details: req.body.details,
+        question: req.body.question,
+        hasOrder: req.body.hasOrder,
         creator: req.user.id,
         // duree:dureeParsed,
-        isActive:req.body.isActive,
-        messageDebut:req.body.messageDebut,
-        messageFin:req.body.messageFin,
-        questions:req.body.questions,
+        type:req.body.type,
+        test:req.body.test
   
-      });
+      });*/
     } else {
-      let dureeParsed= parseInt(req.body.dureeH)*60 +parseInt(req.body.dureeM);
+        console.log(`7na f else`)
   
-      const newTestShema = {
-        nom: req.body.nom,
-        duree:dureeParsed,
-        questions:req.body.questions,
-        isActive:req.body.isActive,
-        messageDebut:req.body.messageDebut,
-        messageFin:req.body.messageFin,
-        creator: req.user.id
+      const newQuestion = {
+        question: req.body.question,
+        hasOrder: new Boolean(req.body.hasOrder),
+        creator: req.user.id,
+        type:req.body.type,
+        test:req.body.test
       }
+      console.log(`wsalna hna`);
+      console.log('lobjet quon va persistee '+newQuestion);
     
-      new Test(newTestShema)
+      new Question(newQuestion)
         .save()
-        .then(test => {
-          req.flash('success_msg', 'Le test a été ajouté avec succées');
-          res.redirect('/tests');
+        .then(question => {
+          req.flash('success_msg', 'La question a été ajouté avec succées');
+          res.redirect(`/tests/details/${newQuestion.test}/questions`);
         })
     }
   }

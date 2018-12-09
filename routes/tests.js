@@ -35,9 +35,9 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
       // now fetching the questions
       Question.find({test: req.params.id})
       .sort({date:'desc'})
-      .then(qestions => {
+      .then(question => {
         res.render('questions/index', {
-          qestions:qestions,
+          question:question,
           test:test
         });
       });
