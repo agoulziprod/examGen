@@ -33,11 +33,15 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
       res.redirect('/tests');
     } else {
       // now fetching the questions
+      const a=Question.find({test: req.params.id});
+console.log('les questions chargés:');
+
+
       Question.find({test: req.params.id})
       .sort({date:'desc'})
-      .then(question => {
+      .then(questions => {
         res.render('questions/index', {
-          question:question,
+          questions:questions,
           test:test
         });
       });

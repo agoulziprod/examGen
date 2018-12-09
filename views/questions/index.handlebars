@@ -62,13 +62,13 @@
             </div>
           </form>
         </div>
-        {{#each question}}
+        {{#each questions}}
         <div class="ui tall stacked segment">
 
-          <a class="ui green ribbon label">1</a>
+          <a class="ui green ribbon label">ok</a>
           <h4 class="ui header">
             Question:
-            <div class="sub header">{{question.question}}?</div>
+            <div class="sub header">{{questions.question}}?</div>
           </h4>
           <h4 class="ui header">
             Réponses sont ordonnée?
@@ -82,7 +82,7 @@
           </h4>
 
           <div class="ui clearing segment">
-            <a class="ui grey button left floated" href="/questions/edit/{{test.id}}">
+            <a class="ui grey button left floated" href="/questions/edit/{{questions.id}}">
               <i class="icon pencil alternate center"></i> Modifier la question
             </a>
             <form method="post" action="/questions/{{question.id}}?_method=DELETE">
@@ -93,6 +93,12 @@
             </form>
 
           </div>
+        </div>
+        {{else}}
+        <div class="ui tall stacked center aligned segment">
+          <h4 class="ui header">
+            Utilisez le formulaire en dessus pour ajouter des questions à votre test! :)
+          </h4>
         </div>
         {{/each}}
 
