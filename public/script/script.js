@@ -63,3 +63,7 @@ $('.ui.checkbox')
     },
     minCharacters: 3
   });
+
+  $('select.dropdown')
+  .dropdown()
+;

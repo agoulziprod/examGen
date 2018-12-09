@@ -89,7 +89,7 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   });
 });
 
-// Process Form
+// Process Add Form
 router.post('/', ensureAuthenticated, (req, res) => {
   let errors = [];
 

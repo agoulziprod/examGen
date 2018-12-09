@@ -13,6 +13,7 @@ const app = express();
 // Load routes
 const tests = require('./routes/tests');
 const users = require('./routes/users');
+const questions = require('./routes/questions');
 
 // Passport Config
 require('./config/passport')(passport);
@@ -54,7 +55,6 @@ app.use(session({
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(flash());
 
 // Global variables
@@ -83,6 +83,7 @@ app.get('/about', (req, res) => {
 // Use routes
 app.use('/tests', tests);
 app.use('/users', users);
+app.use('/questions', questions);
 
 const port = process.env.PORT || 5000;
 
