@@ -9,7 +9,6 @@ const Test = mongoose.model('tests');
 require('../models/Question');
 const Question = mongoose.model('question');
 
-
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
   Test.find({ creator: req.user.id })
