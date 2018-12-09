@@ -39,65 +39,66 @@
         <div class="column">
           {{#if isActive}}
           <div class="card green ui segment">
-          {{else}}
-          <div class="card red ui segment">
-          {{/if}}
-            <div class="content">
-              <div class="header">{{nom}}
-                <span class="right floated">
-                  <i class="stopwatch icon"></i>
-{{duree}}min
-                </span>
+            {{else}}
+            <div class="card red ui segment">
+              {{/if}}
+              <div class="content">
+                <div class="header">{{nom}}
+                  <span class="right floated">
+                    <i class="stopwatch icon"></i>
+                    {{duree}}min
+                  </span>
+                </div>
+                <div class="description">
+                  {{date}}
+                </div>
               </div>
-              <div class="description">
-                12 Nov 2018
-                {{date}}
+              <div class="extra content">
+                <a class="mini ui right floated primary basic button icon" href="/tests/details/{{id}}/questions">
+                  <i class="ellipsis horizontal icon"></i>
+                </a>
+                <i class="clipboard icon"></i>
+                {{nbrQuestion}} Questions
+                <span> ({{questions}})</span>
               </div>
-            </div>
-            <div class="extra content">
-              <a class="mini ui right floated primary basic button icon" href="/tests/details/{{id}}/questions">
-                <i class="ellipsis horizontal icon"></i>
-              </a>
-              <i class="clipboard icon"></i>
-              0 Questions
-              <span> ({{questions}})</span>
-            </div>
-            <div class="extra content">
-              <a class="mini ui right floated primary basic button icon" href="/tests/details/{{id}}/responses">
-                <i class="ellipsis horizontal icon"></i>
-              </a>
-              <i class="circle icon"></i>
-              0 réponses reçus
-            </div>
-            <div class="ui buttons two ">
-              <a href="/tests/details/{{id}}" class="ui green button">Afficher</a>
+              <div class="extra content">
+                <a class="mini ui right floated primary basic button icon" href="/tests/details/{{id}}/responses">
+                  <i class="ellipsis horizontal icon"></i>
+                </a>
+                <i class="circle icon"></i>
+                0 réponses reçus
+              </div>
+              <div class="ui buttons two ">
+                <a href="/tests/details/{{id}}" class="ui green button">Afficher</a>
 
-              <a class="ui button icon" href="/tests/edit/{{id}}" >
-                <i class="icon pencil alternate center"></i>
-              </a>
+                <a class="ui button icon" href="/tests/edit/{{id}}">
+                  <i class="icon pencil alternate center"></i>
+                </a>
+              </div>
             </div>
           </div>
+
+          {{else}}
+          <p>Utiliser le bouton
+            <span class="circular ui icon button green ">
+              <i class="icon plus"></i>
+            </span>
+            pour ajouter des tests</p>
+          {{/each}}
         </div>
 
-        {{else}}
-        <p>Utiliser le bouton
-          <span class="circular ui icon button green ">
-            <i class="icon plus"></i>
-          </span>
-          pour ajouter des tests</p>
-        {{/each}}
+
       </div>
-
-
     </div>
-  </div>
 </section>
 <script>
 
   var tests = [
-  {{#each tests}}
-    { title: '{{nom}}' },
-{{/each}}
+    {{ #each tests }}
+  { title: '{{nom}}' },
+  {
+    {
+      /each}}
     // etc
   ];
 

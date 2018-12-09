@@ -20,7 +20,7 @@
         </a>
         <a class="item active">
           Questions
-          <span class="ui green horizontal label">12</span>
+          <span class="ui green horizontal label">{{question.length}}</span>
         </a>
         <a class="item" href="/tests/details/{{test.id}}/responses">
           Réponses reçues
@@ -76,6 +76,10 @@
             <div class="sub header">{{hasOrder}}</div>
           </h4>
           <h4 class="ui header">
+            Type
+            <div class="sub header">{{type}}</div>
+          </h4>
+          <h4 class="ui header">
             Liste des Réponses:
             <br>
             <div class="ui middle aligned divided list">
@@ -91,8 +95,8 @@
               </div>
                <div class="item">
                 <div class="right floated content">
-                  <a class="ui button">Modifier</a>
-                  <a class="ui button red">Supprimer</a>
+                  <a class="ui basic button">Modifier</a>
+                  <a class="ui basic button red">Supprimer</a>
                 </div>
                 <div class="content">
                   <div class="ui green horizontal label">vrai</div>

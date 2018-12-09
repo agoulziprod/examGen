@@ -53,18 +53,14 @@ router.post('/', ensureAuthenticated, (req, res) => {
   
       });*/
     } else {
-        console.log(`7na f else`)
-  
       const newQuestion = {
         question: req.body.question,
         hasOrder: new Boolean(req.body.hasOrder),
         creator: req.user.id,
         type:req.body.type,
         test:req.body.test
-      }
-      console.log(`wsalna hna`);
-      console.log('lobjet quon va persistee '+newQuestion);
-    
+      }    
+
       new Question(newQuestion)
         .save()
         .then(question => {
@@ -74,6 +70,17 @@ router.post('/', ensureAuthenticated, (req, res) => {
     }
   }
   );
+
+  // Delete questions
+router.delete('/:id', ensureAuthenticated, (req, res) => {
+    
+    Question.remove({ _id: req.params.id })
+      .then(() => {
+        req.flash('success_msg', 'La question a été supprimée avec succès');
+        res.redirect('/tests');
+      });
+  });
+  
   
   
 module.exports = router;
