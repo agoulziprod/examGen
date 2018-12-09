@@ -29,24 +29,25 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
   })
   .then(test => {
     if(test.creator != req.user.id){
+
+      
+
       req.flash('error_msg', `vous n'etes pas autorisé !`);
       res.redirect('/tests');
     } else {
-      // now fetching the questions
+      let coucou='skrrr';
       const a=Question.find({test: req.params.id});
-console.log('les questions chargés:');
-
-
-      Question.find({test: req.params.id})
+       // now fetching the questions
+       Question.find({test: req.params.id})
       .sort({date:'desc'})
-      .then(questions => {
-        res.render('questions/index', {
-          questions:questions,
-          test:test
-        });
-      });
+       .then(questions => {
+         console.log(questions);
+         res.render('questions/index', {
+           c:questions
+         });
+        
+       });
     }
-    
   });
 
  

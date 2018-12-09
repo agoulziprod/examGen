@@ -62,23 +62,23 @@
             </div>
           </form>
         </div>
-        {{#each questions}}
+        {{cc}}
+        {{#each c}}
         <div class="ui tall stacked segment">
 
-          <a class="ui green ribbon label">ok</a>
+          <a class="ui green ribbon label">{{@index}}</a>
           <h4 class="ui header">
             Question:
-            <div class="sub header">{{questions.question}}?</div>
+            <div class="sub header">{{question}}?</div>
           </h4>
           <h4 class="ui header">
             Réponses sont ordonnée?
-            <div class="sub header">false</div>
+            <div class="sub header">{{hasOrder}}</div>
           </h4>
           <h4 class="ui header">
             Liste des Réponses:
             <div class="sub header">est ce que ca va ?</div>
-            <div class="sub header">est ce que ca va ?</div>
-            <div class="sub header">est ce que ca va ?</div>
+            
           </h4>
 
           <div class="ui clearing segment">
@@ -96,7 +96,7 @@
         </div>
         {{else}}
         <div class="ui tall stacked center aligned segment">
-          <h4 class="ui header">
+          <h4 class="ui header green">
             Utilisez le formulaire en dessus pour ajouter des questions à votre test! :)
           </h4>
         </div>
