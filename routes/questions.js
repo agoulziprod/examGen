@@ -74,8 +74,10 @@ router.post('/', ensureAuthenticated, (req, res) => {
 // Delete questions
 router.delete('/:id', ensureAuthenticated, (req, res) => {
 
-    Question.remove({ _id: req.params.id })
-        .then(() => {
+    Question.remove({
+        _id: req.params.id,
+        creator: req.user.id
+    }).then(() => {
             req.flash('success_msg', 'La question a été supprimée avec succès');
             res.redirect('back');
         })
