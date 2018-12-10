@@ -73,19 +73,25 @@ router.post('/', ensureAuthenticated, (req, res) => {
 
 // Delete questions
 router.delete('/:id', ensureAuthenticated, (req, res) => {
-// var testId;
-    Question.findOne({ _id: req.params.id})
-    .then(test => {
-        var testId=test._id;
-    
-
-
-    Question.remove({ _id: req.params.id })
-        .then(() => {
-            req.flash('success_msg', 'La question a été supprimée avec succès');
-            res.redirect('/tests/details/'+testId);
+    // var testId;
+    // Question.findOne({ _id: req.params.id })
+    //     .then(test => {
+    //         const testId = Object.assign({}, test._id);
+            Question.remove({ _id: req.params.id })
+                .then(() => {
+                    req.flash('success_msg', 'La question a été supprimée avec succès');
+                    res.redirect('/tests/');
+                })
+        //         .catch(err => {
+        //             console.log('1')
+        //             console.log(err)
+        //         });
+        // })
+        .catch(err => {
+            console.log('2')
+            console.log(err)
         });
-    });
+
 });
 
 
