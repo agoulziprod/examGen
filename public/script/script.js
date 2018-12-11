@@ -42,28 +42,31 @@ $('.message .close')
       .closest('.message')
       .transition('fade')
       ;
-  })
+  });
+
+  $('select.dropdown')
+  .dropdown()
   ;
 
 // o hna skafandri dial checkbox
 $('.ui.checkbox')
   .checkbox()
   ;
-  
-  $('.ui.search')
-  .search({
 
-    source: tests
-    ,
-    apiSettings: {
-      url: '//api.github.com/search/repositories?q={query}'
-    },
-    fields: {
-      url: '//api.github.com/search/repositories?q={query}'
-    },
-    minCharacters: 3
-  });
 
-  $('select.dropdown')
-  .dropdown()
-;
+$('.ui.search')
+.search({
+
+  source: tests
+  ,
+  fields: {
+    url: '//api.github.com/search/repositories?q={query}'
+  },
+  minCharacters: 1,
+  action: 'search',
+  action: {
+    url: '//api.github.com/search/repositories?q={query}',
+    text: "View all 202 results"
+  }
+});
+
