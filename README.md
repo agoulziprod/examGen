@@ -12,7 +12,14 @@ mongo
 mongod
 ```
 (if these commandes doesn't work try to navigate to your mongo db `bin` folder)
-
+3. run your node.js server
+```
+nodemon
+```
+4. run your web application on the server
+```
+http://localhost:5000/
+```
 >
 ### Project idea and scope
 This is an academic project that I'm working on it, 
