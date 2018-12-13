@@ -1,6 +1,19 @@
 # examGen
 this is the repository for exams generator project v 0.1 done using js technologies
 
+### How to use this code
+1. clone this project
+```
+git clone https://github.com/agoulziprod/examGen.git
+```
+2. run your mongo db client and server
+```
+mongo
+mongod
+```
+(if these commandes doesn't work try to navigate to your mongo db `bin` folder)
+
+>
 ### Project idea and scope
 This is an academic project that I'm working on it, 
 This is a plateforme that let proffessors to manage theire tests and quizes easly
@@ -29,8 +42,6 @@ QuestionReponces : CRUD.
 ********
 User : add type to model (adding type to distinguish roles : proffesor, student, admin)
 ********
-
-
 
 ### Technologies :collision:
 one of the goals of this project is to master javascripts technologies, suach as : node.js, express, mongo as database and others .. so in this project we're going to use only JS technologies.
