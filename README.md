@@ -10,8 +10,11 @@ once the student passes and submits the responses, the plateforme shows the scor
 
 ### Completed tesks
 Authentification : using Passport.js
+---
 Test : CRUD by a proffesor
+---
 Test : a proffesor can use an input to search for a test*
+---
 Question : CRUD by a proffessor*
 
 
