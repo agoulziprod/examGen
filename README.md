@@ -9,6 +9,7 @@ the student : can passe any tast, if he had the key (identifier of the test crea
 once the student passes and submits the responses, the plateforme shows the score and the proffesor can see responses he got and scores of theire studentes.
 
 ### Completed tesks
+********
 Authentification : using Passport.js
 ********
 Test : CRUD by a proffesor
@@ -16,14 +17,18 @@ Test : CRUD by a proffesor
 Test : a proffesor can use an input to search for a test*
 ********
 Question : CRUD by a proffessor*
-
+********
 
 ### To do  list
+********
 Question : Create and Update bug (the radio box always send true)
+********
 Test search input : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
+********
 QuestionReponces : CRUD.
-
+********
 User : add type to model (adding type to distinguish roles : proffesor, student, admin)
+********
 
 
 
