@@ -2,21 +2,21 @@
 this is the repository for exams generator project v 0.1 done using js technologies
 
 ### How to use this code
-1. clone this project
+1. __clone this project__
 ```
 git clone https://github.com/agoulziprod/examGen.git
 ```
-2. run your mongo db client and server
+2. __run your mongo db client and server__
 ```
 mongo
 mongod
 ```
 (if these commandes doesn't work try to navigate to your mongo db `bin` folder)
-3. run your node.js server
+3. __run your node.js server__
 ```
 nodemon
 ```
-4. run your web application on the server
+4. __run your web application on the server__
 ```
 http://localhost:5000/
 ```
