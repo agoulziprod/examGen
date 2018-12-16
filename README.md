@@ -28,6 +28,9 @@ The proffesor : can create his own tests, with different questions
 the student : can passe any tast, if he had the key (identifier of the test created by the proffessor)
 once the student passes and submits the responses, the plateforme shows the score and the proffesor can see responses he got and scores of theire studentes.
 
+### Technologies :collision:
+one of the goals of this project is to master javascripts technologies, suach as : node.js, express, mongo as database and others .. so in this project we're going to use only JS technologies.
+
 ### Completed tesks
 ********
 Authentification : using Passport.js
@@ -45,13 +48,11 @@ Question : Create and Update bug (the radio box always send true)
 ********
 Test search input : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
 ********
-QuestionReponces : CRUD.
+QuestionReponces : CRUD. (responses that will shown for every question)
 ********
-User : add type to model (adding type to distinguish roles : proffesor, student, admin)
+User : add role to the model (adding role to distinguish roles : proffesor, student, admin)
 ********
-
-### Technologies :collision:
-one of the goals of this project is to master javascripts technologies, suach as : node.js, express, mongo as database and others .. so in this project we're going to use only JS technologies.
+QuestionInstance: is the instance that will be generated for every student (randomly from the question schema)
 
 ### perspective :rocket:
 add more question types
