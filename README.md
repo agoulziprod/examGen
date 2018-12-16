@@ -33,26 +33,26 @@ one of the goals of this project is to master javascripts technologies, suach as
 
 ### Completed tesks
 ********
-Authentification : using Passport.js
+__Authentification__ : using Passport.js
 ********
-Test : CRUD by a proffesor
+__Test__ : CRUD by a proffesor
 ********
-Test : a proffesor can use an input to search for a test*
+__Test__ : a proffesor can use an input to search for a test*
 ********
-Question : CRUD by a proffessor*
+__Question__ : CRUD by a proffessor*
 ********
 
 ### To do  list
 ********
-Question : Create and Update bug (the radio box always send true)
+__Question__ : Create and Update bug (the radio box always send true)
 ********
-Test search input : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
+__Test search input__ : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
 ********
-QuestionReponces : CRUD. (responses that will shown for every question)
+__QuestionReponces__ : CRUD. (responses that will shown for every question)
 ********
-User : add role to the model (adding role to distinguish roles : proffesor, student, admin)
+__User__ : add role to the model (adding role to distinguish roles : proffesor, student, admin)
 ********
-QuestionInstance: is the instance that will be generated for every student (randomly from the question schema)
+__QuestionInstance__: is the instance that will be generated for every student (randomly from the question schema)
 
 ### perspective :rocket:
 add more question types
