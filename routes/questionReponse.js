@@ -86,7 +86,7 @@ router.post('/:id', ensureAuthenticated, (req, res) => {
         .save()
         .then(question => {
           req.flash('success_msg', 'La réponse a été ajoutée avec succées');
-          res.redirect('/tests/details/'+question.test+'/questions');
+          res.redirect('back');
         })
 
     }
