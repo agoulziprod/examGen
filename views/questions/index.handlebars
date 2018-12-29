@@ -82,73 +82,81 @@
           <div class="ui fluid accordion">
             <div class="header dividing title">
               <h4 class="ui header">
-              <i class="dropdown icon"></i>
-              Ajouter une réponses: 
+                <i class="dropdown icon"></i>
+                Ajouter une réponses:
               </h4>
             </div>
             <div class="content ">
               <p class="transition visible" style="display: block !important;">
-                
-          <form action="/questionReponse/{{_id}}" method="POST" class="ui form">
-            <div class="two fields">
-              <div class="sixteen wide field">
-                {{!-- <label>Réponse</label> --}}
-                <input type="text" name="reponse" placeholder="Réponse">
-              </div>
-              <div class="field three wide">
-                <div class="ui toggle checkbox">
-                  <input type="checkbox" name="isTrue" checked tabindex="0" class="hidden">
-                  <label>Réponse vrai</label>
-                </div>
-              </div>
-              <button data-tooltip="Ajouter la réponse" data-inverted="" class="ui button icon green" type="submit"><i
-                  class="icon plus center"></i></button>
-            </div>
-          </form>
-
+                <form action="/questionReponse/{{_id}}" method="POST" class="ui form">
+                  <div class="two fields">
+                    <div class="sixteen wide field">
+                      {{!-- <label>Réponse</label> --}}
+                      <input type="text" name="reponse" placeholder="Réponse">
+                    </div>
+                    <div class="field three wide">
+                      <div class="ui toggle checkbox">
+                        <input type="checkbox" name="isTrue" checked tabindex="0" class="hidden">
+                        <label>Réponse vrai</label>
+                      </div>
+                    </div>
+                    <button data-tooltip="Ajouter la réponse" data-inverted="" class="ui button icon green" type="submit"><i
+                        class="icon plus center"></i></button>
+                  </div>
+                </form>
               </p>
             </div>
-           
+
           </div>
-          <h4 class="ui header dividing">
-            Liste des Réponses:
-          </h4>
-          <div class="ui middle aligned divided list">
-            <div class="item">
-              <div class="right floated content">
-                <a class="ui basic button">Modifier</a>
-                <a class="ui basic button red">Supprimer</a>
-              </div>
-              <div class="content">
-                <div class="ui red horizontal label">faux</div>
-                hna la réponses number 1
-              </div>
+
+          <div class="ui fluid accordion">
+            <div class="header dividing title">
+              <h4 class="ui header">
+                <i class="ellipsis horizontal icon"></i>
+                Liste des Réponses:</h4>
             </div>
-            <div class="item">
-              <div class="right floated content">
-                <a class="ui basic button">Modifier</a>
-                <a class="ui basic button red">Supprimer</a>
-              </div>
-              <div class="content">
-                <div class="ui green horizontal label">vrai</div>
-                hna la réponses number 2 etc
-              </div>
+            <div class="content ">
+              <p class="transition visible" style="display: block !important;">
+                <div class="ui middle aligned divided list">
+                  <div class="item">
+                    <div class="right floated content">
+                      <a class="ui basic button">Modifier</a>
+                      <a class="ui basic button red">Supprimer</a>
+                    </div>
+                    <div class="content">
+                      <div class="ui red horizontal label">faux</div>
+                      hna la réponses number 1
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="right floated content">
+                      <a class="ui basic button">Modifier</a>
+                      <a class="ui basic button red">Supprimer</a>
+                    </div>
+                    <div class="content">
+                      <div class="ui green horizontal label">vrai</div>
+                      hna la réponses number 2 etc
+                    </div>
+                  </div>
+                </div>
+                
+              </p>
             </div>
           </div>
+
           <div class="ui clearing segment">
-
-            <a class="ui grey button left floated" href="/questions/edit/{{_id}}">
-              <i class="icon pencil alternate center"></i> Modifier la question
-            </a>
-            <form method="post" action="/questions/{{id}}?_method=DELETE">
-              <input type="hidden" name="_method" value="DELETE">
-              <button type="submit" class="inverted ui button left floated red">
-                <i class="icon trash center"></i> Supprimer la question
-              </button>
-            </form>
-
-          </div>
+                  <a class="ui grey button left floated" href="/questions/edit/{{_id}}">
+                    <i class="icon pencil alternate center"></i> Modifier la question
+                  </a>
+                  <form method="post" action="/questions/{{id}}?_method=DELETE">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="inverted ui button left floated red">
+                      <i class="icon trash center"></i> Supprimer la question
+                    </button>
+                  </form>
+                </div>
         </div>
+
         {{else}}
         <div class="ui tall stacked center aligned segment">
           <h4 class="ui header green">
