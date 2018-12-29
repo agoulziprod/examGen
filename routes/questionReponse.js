@@ -79,14 +79,17 @@ router.post('/:id', ensureAuthenticated, (req, res) => {
         const newQuestionReponse = {
             reponse: req.body.reponse,
             isTrue: Boolean(req.body.isTrue),
-            test: req.params.id
+            question: req.params.id,
+            creator: req.user.id,
         };
 
         new QuestionReponse(newQuestionReponse)
             .save()
-            .then(question => {
+            .then(questionRep => {
                 req.flash('success_msg', 'La réponse a été ajoutée avec succées');
-                res.redirect('back');
+                // if only i can here have the test id so i make this redirect directly without using back
+                // why because : whene i use the get methode and redirect it for the seconde time i lose the flash message
+                res.redirect(`back`);
             })
 
     }

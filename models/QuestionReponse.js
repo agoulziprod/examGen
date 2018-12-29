@@ -12,7 +12,15 @@ const QuestionReponse = new Schema({
         required: true,
         default: false
     },
-    test: {
+    question: {
+        type: String,
+        required: true
+    },
+    // test: {
+    //     type: String,
+    //     required: true
+    // },
+    creator: {
         type: String,
         required: true
     },
