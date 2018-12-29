@@ -79,9 +79,16 @@
             Type
             <div class="sub header">{{type}}</div>
           </h4>
-          <h4 class="ui header dividing">
-            Ajouter une réponses:
-          </h4>
+          <div class="ui fluid accordion">
+            <div class="header dividing title">
+              <h4 class="ui header">
+              <i class="dropdown icon"></i>
+              Ajouter une réponses: 
+              </h4>
+            </div>
+            <div class="content ">
+              <p class="transition visible" style="display: block !important;">
+                
           <form action="/questionReponse/{{_id}}" method="POST" class="ui form">
             <div class="two fields">
               <div class="sixteen wide field">
@@ -94,9 +101,15 @@
                   <label>Réponse vrai</label>
                 </div>
               </div>
-              <button class="ui button icon green" type="submit"><i class="icon plus center"></i></button>
+              <button data-tooltip="Ajouter la réponse" data-inverted="" class="ui button icon green" type="submit"><i
+                  class="icon plus center"></i></button>
             </div>
           </form>
+
+              </p>
+            </div>
+           
+          </div>
           <h4 class="ui header dividing">
             Liste des Réponses:
           </h4>

@@ -52,7 +52,10 @@ $('.message .close')
 $('.ui.checkbox')
   .checkbox()
   ;
-
+//accordion dial ajouter des reponses
+$('.ui.accordion')
+  .accordion()
+;
 
 $('.ui.search')
 .search({
