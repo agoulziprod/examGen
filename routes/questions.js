@@ -55,7 +55,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
     } else {
         const newQuestion = {
             question: req.body.question,
-            hasOrder: new Boolean(req.body.hasOrder),
+            hasOrder: Boolean(req.body.hasOrder),
             creator: req.user.id,
             type: req.body.type,
             test: req.body.test
