@@ -9,7 +9,7 @@ const Test = mongoose.model('tests');
 require('../models/Question');
 const Question = mongoose.model('question');
 require('../models/QuestionReponse');
-const Reponse = mongoose.model('questionReponse');
+const QuestionReponse = mongoose.model('questionReponse');
 
 function shuffle(array) {
     let currentIndex = array.length
@@ -29,9 +29,9 @@ function shuffle(array) {
    }
    return array;
  }
-// Reponse Index Page
+// QuestionReponse Index Page
 router.get('/:id/reponses', ensureAuthenticated, (req, res) => {
-    Reponse.find({ _id: req.params.id })
+    QuestionReponse.find({ _id: req.params.id })
         .sort({ date: 'desc' })
         .then(reponses => {
             res.render('reponses/index', {
@@ -43,7 +43,7 @@ router.get('/:id/reponses', ensureAuthenticated, (req, res) => {
 // Question index page
 router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
 
-    Reponse.findOne({
+    QuestionReponse.findOne({
         _id: req.params.id
     })
         .then(reponse => {
@@ -65,9 +65,9 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
 
 });
 
-// Reponse details page
+// QuestionReponse details page
 router.get('/details/:id', ensureAuthenticated, (req, res) => {
-    Reponse.findOne({
+    QuestionReponse.findOne({
         _id: req.params.id
     })
         .then(reponse => {
@@ -90,14 +90,14 @@ router.get('/details/:id', ensureAuthenticated, (req, res) => {
         });
 });
 
-// Add Reponse Form
+// Add QuestionReponse Form
 router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('reponses/add');
 });
 
-// Edit Reponse Form
+// Edit QuestionReponse Form
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
-    Reponse.findOne({
+    QuestionReponse.findOne({
         _id: req.params.id
     })
         .then(reponse => {
@@ -160,7 +160,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
             creator: req.user.id
         }
 
-        new Reponse(newTestShema)
+        new QuestionReponse(newTestShema)
             .save()
             .then(reponse => {
                 req.flash('success_msg', 'Le reponse a été ajouté avec succées');
@@ -171,7 +171,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
 
 // Edit Form process
 router.put('/:id', ensureAuthenticated, (req, res) => {
-    Reponse.findOne({
+    QuestionReponse.findOne({
         _id: req.params.id
     })
         .then(reponse => {
@@ -193,9 +193,9 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
         });
 });
 
-// Delete Reponse
+// Delete QuestionReponse
 router.delete('/:id', ensureAuthenticated, (req, res) => {
-    Reponse.remove({ _id: req.params.id })
+    QuestionReponse.remove({ _id: req.params.id })
         .then(() => {
             req.flash('success_msg', 'La réponse a été supprimée avec succès');
             res.redirect('back');
