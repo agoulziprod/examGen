@@ -89,6 +89,9 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
 
 });
 
+// hna ghandir index les reponses 
+
+
 
 
 module.exports = router;

@@ -62,7 +62,7 @@
             </div>
           </form>
         </div>
-        
+
         {{#each question}}
         <div class="ui tall stacked segment">
 
@@ -79,32 +79,50 @@
             Type
             <div class="sub header">{{type}}</div>
           </h4>
-          <h4 class="ui header">
-            Liste des Réponses:
-            <br>
-            <div class="ui middle aligned divided list">
-              <div class="item">
-                <div class="right floated content">
-                  <a class="ui basic button">Modifier</a>
-                  <a class="ui basic button red">Supprimer</a>
-                </div>
-                <div class="content">
-                  <div class="ui red horizontal label">faux</div>
-                  hna la réponses number 1 
+          <h4 class="ui header dividing">
+            Ajouter une réponses:
+          </h4>
+          <form action="questionReponse/{{_id}}" method="POST" class="ui form">
+            <div class="two fields">
+              <div class="sixteen wide field">
+                {{!-- <label>Réponse</label> --}}
+                <input type="text" name="reponse" placeholder="Réponse">
+              </div>
+              <div class="field three wide">
+                <div class="ui toggle checkbox">
+                  <input type="checkbox" name="isTrue" checked tabindex="0" class="hidden">
+                  <label>Réponse vrai</label>
                 </div>
               </div>
-               <div class="item">
-                <div class="right floated content">
-                  <a class="ui basic button">Modifier</a>
-                  <a class="ui basic button red">Supprimer</a>
-                </div>
-                <div class="content">
-                  <div class="ui green horizontal label">vrai</div>
-                  hna la réponses number 2 etc
-                </div>
+              <button class="ui button icon green" type="submit"><i class="icon plus center"></i></button>
+            </div>
+
+          </form>
+          <h4 class="ui header dividing">
+            Liste des Réponses:
+          </h4>
+          <div class="ui middle aligned divided list">
+            <div class="item">
+              <div class="right floated content">
+                <a class="ui basic button">Modifier</a>
+                <a class="ui basic button red">Supprimer</a>
+              </div>
+              <div class="content">
+                <div class="ui red horizontal label">faux</div>
+                hna la réponses number 1
               </div>
             </div>
-          </h4>
+            <div class="item">
+              <div class="right floated content">
+                <a class="ui basic button">Modifier</a>
+                <a class="ui basic button red">Supprimer</a>
+              </div>
+              <div class="content">
+                <div class="ui green horizontal label">vrai</div>
+                hna la réponses number 2 etc
+              </div>
+            </div>
+          </div>
           <div class="ui clearing segment">
 
             <a class="ui grey button left floated" href="/questions/edit/{{_id}}">

@@ -5,7 +5,7 @@ const { ensureAuthenticated } = require('../helpers/auth');
 
 // Load Test  and Question Model
 require('../models/Test');
-const Reponse = mongoose.model('tests');
+const Test = mongoose.model('tests');
 require('../models/Question');
 const Question = mongoose.model('question');
 require('../models/QuestionReponse');
@@ -29,14 +29,13 @@ function shuffle(array) {
    }
    return array;
  }
-
 // Reponse Index Page
-router.get('/', ensureAuthenticated, (req, res) => {
+router.get('/:id/reponses', ensureAuthenticated, (req, res) => {
     Reponse.find({ _id: req.params.id })
         .sort({ date: 'desc' })
         .then(reponses => {
             res.render('reponses/index', {
-                reponses: shuffle(reponses)
+                reponses: reponses
             });
         });
 });
