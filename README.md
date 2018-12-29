@@ -39,12 +39,13 @@ __Test__ : CRUD by a proffesor
 ********
 __Test__ : a proffesor can use an input to search for a test*
 ********
-__Question__ : CRUD by a proffessor*
+__Question__ : Create and delete by a proffessor*
 ********
-
+__QuestionReponces__ : Create done (fixed all related bugs)
+********
 ### To do  list
 ********
-__Question__ : Create and Update bug (the radio box always send true)
+__Question__ : update a question
 ********
 __Test search input__ : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
 ********
