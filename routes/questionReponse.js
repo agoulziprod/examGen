@@ -5,19 +5,38 @@ const { ensureAuthenticated } = require('../helpers/auth');
 
 // Load Test  and Question Model
 require('../models/Test');
-const Test = mongoose.model('tests');
+const Reponse = mongoose.model('tests');
 require('../models/Question');
 const Question = mongoose.model('question');
 require('../models/QuestionReponse');
 const Reponse = mongoose.model('questionReponse');
 
-// Test Index Page
+function shuffle(array) {
+    let currentIndex = array.length
+     , temporaryValue
+     , randomIndex
+     ;
+   while (0 !== currentIndex) {
+     randomIndex = Math.floor(Math.random() * currentIndex);
+     currentIndex -= 1;
+     //permuter lia les valeurs
+ [array[randomIndex],array[currentIndex]]=[array[currentIndex],array[randomIndex]];
+/*
+     temporaryValue = array[currentIndex];
+     array[currentIndex] = array[randomIndex];
+     array[randomIndex] = temporaryValue;
+     */
+   }
+   return array;
+ }
+
+// Reponse Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
-    Test.find({ creator: req.user.id })
+    Reponse.find({ _id: req.params.id })
         .sort({ date: 'desc' })
-        .then(tests => {
-            res.render('tests/index', {
-                tests: tests
+        .then(reponses => {
+            res.render('reponses/index', {
+                reponses: shuffle(reponses)
             });
         });
 });
@@ -25,20 +44,20 @@ router.get('/', ensureAuthenticated, (req, res) => {
 // Question index page
 router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
 
-    Test.findOne({
+    Reponse.findOne({
         _id: req.params.id
     })
-        .then(test => {
-            if (test.creator != req.user.id) {
+        .then(reponse => {
+            if (reponse.creator != req.user.id) {
                 req.flash('error_msg', `vous n'etes pas autorisé !`);
-                res.redirect('/tests');
+                res.redirect('/reponses');
             } else {
-                Question.find({ test: req.params.id })
+                Question.find({ reponse: req.params.id })
                     .sort({ date: 'desc' })
                     .then(questions => {
                         res.render('questions/index', {
                             question: questions,
-                            test: test
+                            reponse: reponse
                         });
                     });
             }
@@ -47,22 +66,22 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
 
 });
 
-// Test details page
+// Reponse details page
 router.get('/details/:id', ensureAuthenticated, (req, res) => {
-    Test.findOne({
+    Reponse.findOne({
         _id: req.params.id
     })
-        .then(test => {
-            if (test.creator != req.user.id) {
+        .then(reponse => {
+            if (reponse.creator != req.user.id) {
                 req.flash('error_msg', `vous n'etes pas autorisé !`);
-                res.redirect('/tests');
+                res.redirect('/reponses');
             } else {
-                // console.log(test);
-                Question.find({ test: req.params.id })
+                // console.log(reponse);
+                Question.find({ reponse: req.params.id })
                     .sort({ date: 'desc' })
                     .then(questions => {
-                        res.render('tests/details', {
-                            test: test,
+                        res.render('reponses/details', {
+                            reponse: reponse,
                             question: questions
                         });
                     });
@@ -72,23 +91,23 @@ router.get('/details/:id', ensureAuthenticated, (req, res) => {
         });
 });
 
-// Add Test Form
+// Add Reponse Form
 router.get('/add', ensureAuthenticated, (req, res) => {
-    res.render('tests/add');
+    res.render('reponses/add');
 });
 
-// Edit Test Form
+// Edit Reponse Form
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
-    Test.findOne({
+    Reponse.findOne({
         _id: req.params.id
     })
-        .then(test => {
-            if (test.creator != req.user.id) {
+        .then(reponse => {
+            if (reponse.creator != req.user.id) {
                 req.flash('error_msg', 'Not Authorized');
-                res.redirect('/tests');
+                res.redirect('/reponses');
             } else {
-                res.render('tests/edit', {
-                    test: test
+                res.render('reponses/edit', {
+                    reponse: reponse
                 });
             }
         });
@@ -99,19 +118,19 @@ router.post('/', ensureAuthenticated, (req, res) => {
     let errors = [];
 
     if (!req.body.nom) {
-        errors.push({ text: `veuillez ajouter un nom à votre test` });
+        errors.push({ text: `veuillez ajouter un nom à votre reponse` });
     }
     if (!req.body.dureeM && !req.body.dureeH) {
-        errors.push({ text: `veuillez définir une durée valide pour votre test` });
+        errors.push({ text: `veuillez définir une durée valide pour votre reponse` });
     }
     if (!req.body.questions) {
-        errors.push({ text: `veuillez ajouter un nombre de questions à votre test` });
+        errors.push({ text: `veuillez ajouter un nombre de questions à votre reponse` });
     }
     if (!req.body.messageDebut) {
-        errors.push({ text: `veuillez ajouter un message de début à votre test` });
+        errors.push({ text: `veuillez ajouter un message de début à votre reponse` });
     }
     if (!req.body.messageFin) {
-        errors.push({ text: `veuillez ajouter un message de fin à votre test` });
+        errors.push({ text: `veuillez ajouter un message de fin à votre reponse` });
     }
 
     // hna les verifications 3la les inputs
@@ -142,40 +161,40 @@ router.post('/', ensureAuthenticated, (req, res) => {
             creator: req.user.id
         }
 
-        new Test(newTestShema)
+        new Reponse(newTestShema)
             .save()
-            .then(test => {
-                req.flash('success_msg', 'Le test a été ajouté avec succées');
-                res.redirect('/tests');
+            .then(reponse => {
+                req.flash('success_msg', 'Le reponse a été ajouté avec succées');
+                res.redirect('/reponses');
             })
     }
 });
 
 // Edit Form process
 router.put('/:id', ensureAuthenticated, (req, res) => {
-    Test.findOne({
+    Reponse.findOne({
         _id: req.params.id
     })
-        .then(test => {
+        .then(reponse => {
             console.log(`req.body.isActive ha ach 3taat : ${req.body.isActive}`);
 
             let dureeParsed = parseInt(req.body.dureeH) * 60 + parseInt(req.body.dureeM);
-            test.nom = req.body.nom;
-            test.duree = dureeParsed;
-            test.questions = req.body.questions;
-            test.isActive = Boolean(req.body.isActive);
-            test.messageDebut = req.body.messageDebut;
-            test.messageFin = req.body.messageFin;
-            console.log(test);
-            test.save()
-                .then(test => {
-                    req.flash('success_msg', 'Le test à été mis à jour');
-                    res.redirect('/tests');
+            reponse.nom = req.body.nom;
+            reponse.duree = dureeParsed;
+            reponse.questions = req.body.questions;
+            reponse.isActive = Boolean(req.body.isActive);
+            reponse.messageDebut = req.body.messageDebut;
+            reponse.messageFin = req.body.messageFin;
+            console.log(reponse);
+            reponse.save()
+                .then(reponse => {
+                    req.flash('success_msg', 'Le reponse à été mis à jour');
+                    res.redirect('/reponses');
                 })
         });
 });
 
-// Delete Test
+// Delete Reponse
 router.delete('/:id', ensureAuthenticated, (req, res) => {
     Reponse.remove({ _id: req.params.id })
         .then(() => {
