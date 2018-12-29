@@ -83,14 +83,28 @@ router.post('/:id', ensureAuthenticated, (req, res) => {
         };
 
         new QuestionReponse(newQuestionReponse)
-        .save()
-        .then(question => {
-          req.flash('success_msg', 'La réponse a été ajoutée avec succées');
-          res.redirect('back');
-        })
+            .save()
+            .then(question => {
+                req.flash('success_msg', 'La réponse a été ajoutée avec succées');
+                res.redirect('back');
+            })
 
     }
 });
+
+//just for redirection :'(
+router.get('/:id', ensureAuthenticated, (req, res) => {
+    Question
+        .findOne({ _id: req.params.id })
+        .then(question => {
+            let testId = question.test;
+            // res.send(test);
+            res.redirect(`/tests/details/${question.test}/questions`);
+        })
+
+
+    // 
+})
 
 // Delete QuestionReponse
 router.delete('/:id', ensureAuthenticated, (req, res) => {
