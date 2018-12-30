@@ -1,0 +1,30 @@
+<section class="body grey column">
+    <div class="ui row"></div>
+    <div class="ui segment container">
+        <h4>Modifier une réponse</h4>
+        <form action="/questionReponse/{{questionReponse._id}}?_method=PUT" method="POST" class="ui form">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="two fields">
+                <div class="sixteen wide field">
+                    {{!-- <label>Réponse</label> --}}
+                    <input type="text" name="reponse" placeholder="Réponse" value="{{questionReponse.reponse}}">
+                </div>
+                <div class="field three wide">
+                    {{#if questionReponse.isTrue}}
+                      <div class="ui toggle checkbox">
+                        <input type="checkbox" name="isTrue" checked tabindex="0" class="hidden">
+                        <label>Réponse vrai</label>
+                    </div>
+                      {{else}}
+                      <div class="ui toggle checkbox">
+                        <input type="checkbox" name="isTrue" tabindex="0" class="hidden">
+                        <label>Réponse vrai</label>
+                    </div>
+                      {{/if}}
+                </div>
+                <button data-tooltip="Ajouter la réponse" data-inverted="" class="ui button icon green" type="submit"><i
+                        class="icon plus center"></i></button>
+            </div>
+        </form>
+    </div>
+</section>

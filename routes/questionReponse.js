@@ -11,24 +11,6 @@ const Question = mongoose.model('question');
 require('../models/QuestionReponse');
 const QuestionReponse = mongoose.model('questionReponse');
 
-function shuffle(array) {
-    let currentIndex = array.length
-        , temporaryValue
-        , randomIndex
-        ;
-    while (0 !== currentIndex) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        //permuter lia les valeurs
-        [array[randomIndex], array[currentIndex]] = [array[currentIndex], array[randomIndex]];
-        /*
-             temporaryValue = array[currentIndex];
-             array[currentIndex] = array[randomIndex];
-             array[randomIndex] = temporaryValue;
-             */
-    }
-    return array;
-}
 
 // Question index page
 /*
@@ -109,8 +91,31 @@ router.get('/:id', ensureAuthenticated, (req, res) => {
     // 
 })
 
-// update
+// update form edit/{{_id}}
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 
+    QuestionReponse
+        .findOne({
+            _id: req.params.id
+        })
+        .then(questionReponse => {
+            if (questionReponse.creator != req.user.id) {
+                req.flash('error_msg', 'Not Authorized');
+                res.redirect('/tests');
+            } else {
+                res.render('questionReponses/edit', {
+                    questionReponse: questionReponse
+                });
+            }
+        });
+
+
+    // res.render('questionReponses/edit');
+
+
+})
+
+//update form data process
 
 // Delete QuestionReponse
 router.delete('/:id', ensureAuthenticated, (req, res) => {
