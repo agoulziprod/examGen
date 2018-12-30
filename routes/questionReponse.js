@@ -46,7 +46,7 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 });
 
 
-// Process Add Form :done
+// Process Add data :done
 router.post('/:id', ensureAuthenticated, (req, res) => {
     let errors = [];
     if (!req.body.reponse)
@@ -142,7 +142,6 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
 
         });
 });
-
 
 // Delete QuestionReponse
 router.delete('/:id', ensureAuthenticated, (req, res) => {

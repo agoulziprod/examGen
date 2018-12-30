@@ -20,6 +20,21 @@
         <label>Répeter le mot de passe</label>
         <input type="password" name="password2" placeholder="répeter le mot de passe" required>
       </div>
+      <div class="inline fields required">
+        <label for="role">Type de compte:</label>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="role" checked="" tabindex="0" class="hidden" value="enseignant">
+            <label>Enseignant</label>
+          </div>
+        </div>
+        <div class="field ">
+          <div class="ui radio checkbox">
+            <input type="radio" name="role" tabindex="0" class="hidden" value="apprenant">
+            <label>Etudiant</label>
+          </div>
+        </div>
+      </div>
       <button class="ui button green" type="submit">S'inscrire</button>
       <button class="ui button " type="reset">vider les champs</button>
     </form>

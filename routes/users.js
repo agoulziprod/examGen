@@ -21,7 +21,7 @@ router.get('/register', (req, res) => {
 // Login Form POST
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect:'/tests',
+    successRedirect: '/tests',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
@@ -31,15 +31,15 @@ router.post('/login', (req, res, next) => {
 router.post('/register', (req, res) => {
   let errors = [];
 
-  if(req.body.password != req.body.password2){
-    errors.push({text:'Les deux champs mots de passe ne sont pas identique'});
+  if (req.body.password != req.body.password2) {
+    errors.push({ text: 'Les deux champs mots de passe ne sont pas identique' });
   }
 
-  if(req.body.password.length < 4){
-    errors.push({text:'Le mot de passe doit contenir au moins 4 charactères'});
+  if (req.body.password.length < 4) {
+    errors.push({ text: 'Le mot de passe doit contenir au moins 4 charactères' });
   }
 
-  if(errors.length > 0){
+  if (errors.length > 0) {
     res.render('users/register', {
       errors: errors,
       name: req.body.name,
@@ -48,21 +48,24 @@ router.post('/register', (req, res) => {
       password2: req.body.password2
     });
   } else {
-    User.findOne({email: req.body.email})
+    User.findOne({ email: req.body.email })
       .then(user => {
-        if(user){
+        if (user) {
           req.flash('error_msg', `L'email existe déja`);
           res.redirect('/users/register');
         } else {
+          console.log("hna nchofo role ");
+          console.log(req.body.role);
           const newUser = new User({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            role: req.body.role
           });
-          
+
           bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
-              if(err) throw err;
+              if (err) throw err;
               newUser.password = hash;
               newUser.save()
                 .then(user => {
