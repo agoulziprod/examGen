@@ -91,7 +91,7 @@ router.get('/:id', ensureAuthenticated, (req, res) => {
     // 
 })
 
-// update form edit/{{_id}}
+// edit form edit/{{_id}}
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 
     QuestionReponse
@@ -115,7 +115,34 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 
 })
 
-//update form data process
+//edit form data process
+router.put('/:id', ensureAuthenticated, (req, res) => {
+    
+    QuestionReponse.findOne({
+        _id: req.params.id
+    })
+        .then(questionReponse => {
+
+
+            if (questionReponse.creator != req.user.id) {
+                req.flash('error_msg', 'Not Authorized');
+                res.redirect('/tests');
+            } else {
+                questionReponse.reponse = req.body.reponse;
+                questionReponse.isTrue = Boolean(req.body.isTrue);
+                questionReponse
+                    .save()
+                    .then(questionReponse => {
+                        req.flash('success_msg', 'La reponse à été mis à jour');
+                        res.redirect('/tests');
+                    })
+               
+            }
+
+
+        });
+});
+
 
 // Delete QuestionReponse
 router.delete('/:id', ensureAuthenticated, (req, res) => {
