@@ -15,6 +15,7 @@ const tests = require('./routes/tests');
 const users = require('./routes/users');
 const questions = require('./routes/questions');
 const questionReponse = require('./routes/questionReponse');
+const testInstances = require('./routes/testInstances');
 
 // Passport Config
 require('./config/passport')(passport);
@@ -86,6 +87,7 @@ app.use('/tests', tests);
 app.use('/users', users);
 app.use('/questions', questions);
 app.use('/questionReponse', questionReponse);
+app.use('/testInstances', testInstances);
 
 const port = process.env.PORT || 5000;
 

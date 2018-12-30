@@ -10,28 +10,46 @@ require('../models/Question');
 const Question = mongoose.model('question');
 require('../models/QuestionReponse');
 const QuestionReponse = mongoose.model('questionReponse');
+require('../models/TestInstance');
+const TestInstance = mongoose.model('testInstance');
 
 
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
-  Test.find({ creator: req.user.id })
-    .sort({ date: 'desc' })
-    .then(tests => {
-      res.render('tests/index', {
-        tests: tests
-      });
-      //i wanna retreive the value of : how much every test have 
+  const userRole = req.user.role;
+  //traitement 3la 7sab khona li mconnecter
 
-      // Question.find({ test: req.params.id })
-      //   .sort({ date: 'desc' })
-      //   .then(questions => {
-      //     tests.forEach(function (test) {
-      //       questions.forEach(function (question) {
-      //         if (test._id == question.test)
-      //           tests.questionsAdded++;
-      //       })
-      //     });
-    });
+  switch (userRole) {
+    case 'enseignant':
+      Test.find({ creator: req.user.id })
+        .sort({ date: 'desc' })
+        .then(tests => {
+          res.render('tests/index', {
+            tests: tests,
+            role: req.user.role
+          });
+          //i wanna retreive the value of : how much every test have 
+
+          // Question.find({ test: req.params.id })
+          //   .sort({ date: 'desc' })
+          //   .then(questions => {
+          //     tests.forEach(function (test) {
+          //       questions.forEach(function (question) {
+          //         if (test._id == question.test)
+          //           tests.questionsAdded++;
+          //       })
+          //     });
+        });
+      break;
+    case 'apprenant':
+      // code block
+      res.redirect('/testInstances');
+      break;
+    default:
+  }
+
+
+
 });
 
 // Question index page
@@ -57,9 +75,9 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
                   // let newReponses = new Array();
                   let newElement = element;
                   let newReponses = questionReponse.filter(rep => rep.question == element._id);
-                  let objetDialQS={ questionReponse: newReponses }
+                  let objetDialQS = { questionReponse: newReponses }
                   console.log("hna hna ghanchofo wach l'objet fih array dialna");
-                  let objecto = Object.assign({},newElement, objetDialQS);
+                  let objecto = Object.assign({}, newElement, objetDialQS);
                   console.log("hna lobjet 7arfi nchofo");
                   console.log(objecto);
                   console.log("sala lobjet l7arfi");

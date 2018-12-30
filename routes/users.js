@@ -20,6 +20,15 @@ router.get('/register', (req, res) => {
 
 // Login Form POST
 router.post('/login', (req, res, next) => {
+  let enseignant={
+    successRedirect: '/tests',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  }, apprenant={
+    successRedirect: '/test/avm',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  };
   passport.authenticate('local', {
     successRedirect: '/tests',
     failureRedirect: '/users/login',
