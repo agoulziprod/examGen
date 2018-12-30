@@ -70,15 +70,15 @@
           <a class="ui green ribbon label">{{@index}}</a>
           <h4 class="ui header">
             Question:
-            <div class="sub header">{{question}}?</div>
+            <div class="sub header">{{_doc.question}}?</div>
           </h4>
           <h4 class="ui header">
             Réponses sont ordonnées?
-            <div class="sub header">{{hasOrder}}</div>
+            <div class="sub header">{{_doc.hasOrder}}</div>
           </h4>
           <h4 class="ui header">
             Type
-            <div class="sub header">{{type}}</div>
+            <div class="sub header">{{_doc.type}}</div>
           </h4>
           <div class="ui fluid accordion">
             <div class="header dividing title">
@@ -89,7 +89,7 @@
             </div>
             <div class="content ">
               <p class="transition visible" style="display: block !important;">
-                <form action="/questionReponse/{{_id}}" method="POST" class="ui form">
+                <form action="/questionReponse/{{_doc._id}}" method="POST" class="ui form">
                   <div class="two fields">
                     <div class="sixteen wide field">
                       {{!-- <label>Réponse</label> --}}
@@ -119,6 +119,7 @@
             <div class="content ">
               <p class="transition visible" style="display: block !important;">
                 <div class="ui middle aligned divided list">
+                  {{#each questionReponse}}
                   <div class="item">
                     <div class="right floated content">
                       <a class="ui basic button">Modifier</a>
@@ -126,9 +127,10 @@
                     </div>
                     <div class="content">
                       <div class="ui red horizontal label">faux</div>
-                      hna la réponses number 1
+                      tfa7a dial les reponses
                     </div>
                   </div>
+                  {{/each}}
                   <div class="item">
                     <div class="right floated content">
                       <a class="ui basic button">Modifier</a>

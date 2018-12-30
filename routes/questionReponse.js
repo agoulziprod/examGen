@@ -95,7 +95,7 @@ router.post('/:id', ensureAuthenticated, (req, res) => {
     }
 });
 
-//just for redirection :'(
+//just for redirection : done
 router.get('/:id', ensureAuthenticated, (req, res) => {
     Question
         .findOne({ _id: req.params.id })
@@ -108,6 +108,9 @@ router.get('/:id', ensureAuthenticated, (req, res) => {
 
     // 
 })
+
+// update
+
 
 // Delete QuestionReponse
 router.delete('/:id', ensureAuthenticated, (req, res) => {

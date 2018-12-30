@@ -8,6 +8,9 @@ require('../models/Test');
 const Test = mongoose.model('tests');
 require('../models/Question');
 const Question = mongoose.model('question');
+require('../models/QuestionReponse');
+const QuestionReponse = mongoose.model('questionReponse');
+
 
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
@@ -17,7 +20,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
       res.render('tests/index', {
         tests: tests
       });
-//i wanna retreive the value of : how much every test have 
+      //i wanna retreive the value of : how much every test have 
 
       // Question.find({ test: req.params.id })
       //   .sort({ date: 'desc' })
@@ -42,11 +45,48 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
         req.flash('error_msg', `vous n'etes pas autorisé !`);
         res.redirect('/tests');
       } else {
+        let newArray = new Array();
         Question.find({ test: req.params.id })
           .sort({ date: 'desc' })
           .then(questions => {
+            QuestionReponse
+              .find()
+              .then(questionReponse => {
+                let newQuestions = new Array();
+                questions.forEach(element => {
+                  // let newReponses = new Array();
+                  let newElement = element;
+                  let newReponses = questionReponse.filter(rep => rep.question == element._id);
+                  let objetDialQS={ questionReponse: newReponses }
+                  console.log("hna hna ghanchofo wach l'objet fih array dialna");
+                  let objecto = Object.assign({},newElement, objetDialQS);
+                  console.log("hna lobjet 7arfi nchofo");
+                  console.log(objecto);
+                  console.log("sala lobjet l7arfi");
+
+                  newArray.push(objecto);
+
+
+                  // console.log(Object.assign(newElement, newReponsesObject));
+                  // console.log(JSON.stringify(questions, null, 4));
+
+                  console.log("3la molana");
+
+                  // newElement["questionReponses"]=newReponses;
+                  // console.log(newElement);
+                  // console.log(Object.assign({}, element, newReponses));
+                });
+
+                // Object.assign({}, questions[1], element)
+
+                console.log("hna nchofo couou");
+                // console.log(JSON.stringify(questions, null, 4));
+
+              });
+
+            // console.log(JSON.stringify(questions, null, 4));
             res.render('questions/index', {
-              question: questions,
+              question: newArray,
               test: test
             });
           });
@@ -72,10 +112,10 @@ router.get('/details/:id', ensureAuthenticated, (req, res) => {
           .then(questions => {
             res.render('tests/details', {
               test: test,
-              question:questions
+              question: questions
             });
           });
-        
+
       }
 
     });
@@ -198,4 +238,11 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
     });
 });
 
+
+
+
+
+
+
 module.exports = router;
+
