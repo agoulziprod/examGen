@@ -44,7 +44,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
         let testInstance = new TestInstance();
         testInstance.test = test._id;
         testInstance.apprenant = req.user.id;
-        testInstance.lengh = test.questions;
+        testInstance.lengh = test.duree;
 
 
 
@@ -73,12 +73,14 @@ router.post('/', ensureAuthenticated, (req, res) => {
                 // console.log('daba nchofo objectoo dialna achno fiiih')
                 // console.log(objecto)
                 newQuestions.push(objecto);
-
               });
 
               console.log('salina hna boocle aji nchofo lobjet kaml ach fih 999999')
-              // console.log(newQuestions)
               console.log(JSON.stringify(newQuestions, null, 4));
+              // hna ghan afficher hadak khona nchofo kidayr f structure dialo
+              testInstance.questions=newQuestions;
+              console.log(testInstance)
+
 
             });
 
