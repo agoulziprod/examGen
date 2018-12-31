@@ -17,7 +17,7 @@ const TestInstance = mongoose.model('testInstance');
 
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
-// res.send('brboqa');
+res.render('testInstance/index');
 
 });
 /*
@@ -33,20 +33,4 @@ TestInstance.find({ passedBy: req.user.id })
 */
 
 
-// Delete Test
-router.delete('/:id', ensureAuthenticated, (req, res) => {
-  Test.remove({ _id: req.params.id })
-    .then(() => {
-      req.flash('success_msg', 'Le test a été supprimé avec succès');
-      res.redirect('/tests');
-    });
-});
-
-
-
-
-
-
-
 module.exports = router;
-
