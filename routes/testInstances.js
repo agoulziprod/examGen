@@ -17,20 +17,41 @@ const TestInstance = mongoose.model('testInstance');
 
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
-res.render('testInstance/index');
+  res.render('testInstance/index');
 
 });
 /*
-TestInstance.find({ passedBy: req.user.id })
-      .sort({ date: 'desc' })
-      .then(tests => {
-        res.render('tests/student/index', {
-          tests: tests
-          // ,role: req.user.role
-        });
-       
-      });
-*/
 
+*/
+// Test Index Page
+router.post('/', ensureAuthenticated, (req, res) => {
+
+  Test.findOne({
+    isActive: true,
+    _id: req.body.test
+  })
+    .then(test => {
+      if (test == null) {
+        req.flash('error_msg', `veuillez s'assurer du code, aucun test ne porte cet id!`);
+        res.redirect('/testInstances');
+      }else{
+        // ici la generation du testInstance :D
+        res.render('testInstance/pret', {
+        test: test
+        // ,role: req.user.role
+      });
+      }
+      
+
+    })
+    .catch(err => {
+      req.flash('error_msg', `veuillez s'assurer du code, aucun test ne porte cet id!`);
+      res.redirect('/testInstances');
+
+
+    });
+  // res.render('testInstance/index');
+
+});
 
 module.exports = router;
