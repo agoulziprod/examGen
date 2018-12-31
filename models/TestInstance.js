@@ -8,11 +8,12 @@ const TestInstance = new Schema({
         required: true
     },
     questions: [{
-        questionId: String,
+        _id: String,
         question: String,
         type: String,
         questionReponses:
             [{
+                _id:String,
                 reponse: String,
                 isTrue: String
             }]
