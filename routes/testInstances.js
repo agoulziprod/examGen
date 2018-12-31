@@ -32,13 +32,12 @@ router.post('/', ensureAuthenticated, (req, res) => {
   })
     .then(test => {
       if (test == null) {
-        req.flash('error_msg', `veuillez s'assurer du code, aucun test ne porte cet id!`);
+        req.flash('error_msg', `veuillez s'assurer du code, Le test que vous avez selectionnez est désactivé!`);
         res.redirect('/testInstances');
       }else{
         // ici la generation du testInstance :D
         res.render('testInstance/pret', {
         test: test
-        // ,role: req.user.role
       });
       }
       
