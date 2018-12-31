@@ -1,16 +1,15 @@
 <section class="grey column">
     <div class="ui container">
-        <div class="ui grid">
+        <div class="ui grid centered">
             <div class="row"></div>
             <h3>Accéder à un test utilisant le code donné par votre enseignant</h3>
             <div class="row ">
                 <div class="eight wide centered column">
-                    <form class="ui form center aligned" action="" >
+                    <form class="ui form center aligned" action="">
                         <div class="field">
                             <div class="ui search">
                                 <div class="ui icon input">
-                                    <input class="prompt" type="text" placeholder="inserer le code ici"
-                                    name="test"
+                                    <input class="prompt" type="text" placeholder="inserer le code ici" name="test"
                                         style="border-radius: 500rem;">
                                     <i class="clipboard icon"></i>
                                 </div>
@@ -20,62 +19,120 @@
                 </div>
             </div>
             <!-- hna les cartes -->
-            <div class="stretched four column row stackable cards">
 
-                {{#each tests}}
 
-                <div class="column">
-                    {{#if isActive}}
-                    <div class="card green ui segment">
-                        {{else}}
-                        <div class="card red ui segment">
-                            {{/if}}
-                            <div class="content">
-                                <div class="header">{{nom}}
-                                    <span class="right floated">
-                                        <i class="stopwatch icon"></i>
-                                        {{duree}}min
-                                    </span>
-                                </div>
-                                <div class="description">
-                                    {{date}}
-                                </div>
-                            </div>
-                            <div class="extra content">
-                                <a class="mini ui right floated primary basic button icon" href="/tests/details/{{id}}/questions">
-                                    <i class="ellipsis horizontal icon"></i>
-                                </a>
-                                <i class="clipboard icon"></i>
-                                {{questionsAdded}} Questions
-                                <span> ({{questions}})</span>
-                            </div>
-                            <div class="extra content">
-                                <a class="mini ui right floated primary basic button icon" href="/tests/details/{{id}}/responses">
-                                    <i class="ellipsis horizontal icon"></i>
-                                </a>
-                                <i class="circle icon"></i>
-                                0 réponses reçus
-                            </div>
-                            <div class="ui buttons two ">
-                                <a href="/tests/details/{{id}}" class="ui green button">Afficher</a>
 
-                                <a class="ui button icon" href="/tests/edit/{{id}}">
-                                    <i class="icon pencil alternate center"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row"></div>
 
-                    {{else}}
-                    <p>Utiliser le bouton
-                        <span class="circular ui icon button green ">
-                            <i class="icon plus"></i>
-                        </span>
-                        pour ajouter des tests</p>
-                    {{/each}}
-                </div>
 
-            </div>
+        </div>
+        <div class="segment ui">
+            <h3>Liste des tests</h3>
+            <h4>Utiliser le code en dessus pour accéder et passer un examen</h4>
+
+<div class="ui cards four">
+  <div class="card">
+    <div class="content">
+      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
+      <div class="header">
+        Java
+      </div>
+      <div class="meta">
+          Sat Dec 29 2018 00:56:45
+      </div>
+      <div class="description">
+        Elliot requested permission to view your contact details
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic green button">Consulter</div>
+        {{!-- <div class="ui basic red button">Decline</div> --}}
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="content">
+      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
+      <div class="header">
+        Java
+      </div>
+      <div class="meta">
+          Sat Dec 29 2018 00:56:45
+      </div>
+      <div class="description">
+        Elliot requested permission to view your contact details
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic red button">Consulter</div>
+        {{!-- <div class="ui basic red button">Decline</div> --}}
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="content">
+      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
+      <div class="header">
+        Java
+      </div>
+      <div class="meta">
+          Sat Dec 29 2018 00:56:45
+      </div>
+      <div class="description">
+        Elliot requested permission to view your contact details
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic green button">Consulter</div>
+        {{!-- <div class="ui basic red button">Decline</div> --}}
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="content">
+      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
+      <div class="header">
+        Java
+      </div>
+      <div class="meta">
+          Sat Dec 29 2018 00:56:45
+      </div>
+      <div class="description">
+        Elliot requested permission to view your contact details
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic green button">Consulter</div>
+        {{!-- <div class="ui basic red button">Decline</div> --}}
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="content">
+      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
+      <div class="header">
+        Java
+      </div>
+      <div class="meta">
+          Sat Dec 29 2018 00:56:45
+      </div>
+      <div class="description">
+        Elliot requested permission to view your contact details
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic green button">Consulter</div>
+        {{!-- <div class="ui basic red button">Decline</div> --}}
+      </div>
+    </div>
+  </div>
+</div>
+
         </div>
     </div>
 </section>
