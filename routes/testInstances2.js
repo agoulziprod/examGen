@@ -25,40 +25,70 @@ router.get('/', ensureAuthenticated, (req, res) => {
 */
 // Test Index Page
 router.post('/', ensureAuthenticated, (req, res) => {
-  var testObject,questionsObject,questionReponseObject;
+
+  let testInstanceObject = {}, questionsObject = {}, questionReponseObject = {};
 
   // retreiving test
   Test.findOne({
     isActive: true,
     _id: req.body.test
+  }).sort({ date: 'desc' })
+    .then(test => {
+
+      testInstanceObject = Object.assign({}, {
+        test: test._doc._id,
+        apprenant: req.user.id,
+        duree: test._doc.duree,
+        length: test._doc.questions
+      });
+
+      Question.find({
+        test: test._id
+      })
+        .sort({ date: 'desc' })
+        .then(questions => {
+          let cleanedQuestions = [];
+          
+          questions.forEach(el=>{
+            delete el._doc.hasOrder;
+            delete el._doc.creator;
+            delete el._doc.test;
+            delete el._doc.date;
+            delete el._doc.__v;
+            // el._doc.questionReponses="efzf"
+            cleanedQuestions.push(el)
+          })
+
+
+
+
+        })
+
+      // res.redirect('/testInstances2/cc');
+
+    })
+    .catch(err => {
+      req.flash('error_msg', `veuillez s'assurer du code, aucun test ne porte cet id!
+      ${err}
+      `);
+      res.redirect('/testInstances2');
+    });
+  // console.log("nchofo wach scope m3ana olla kitfalla 3lina")
+  // console.log(testInstanceObject)
+  // console.log(JSON.stringify(testInstanceObject, null, 4));
+
+  // retreiving all questions existing in the database
+  /*
+  Question.find({
+    //test: testObject._id
   })
     .sort({ date: 'desc' })
     .then(test => {
-      //testObject=test;
-      Object.assign(testObject,test);
+      testObject=test;
       console.log("lginah ok");
-      console.log(testObject);
       
     })
-    .catch(err => {
-      req.flash('error_msg', `veuillez s'assurer du code, aucun test ne porte cet id!`);
-      res.redirect('/testInstances');
-    });
-// retreiving all questions existing in the database
-/*
-Question.find({
-  //test: testObject._id
-})
-  .sort({ date: 'desc' })
-  .then(test => {
-    testObject=test;
-    console.log("lginah ok");
-    
-  })
-  */
-
-    console.log("ghandozo hna ?");
-    console.log(testObject);
+    */
 
 
   // res.render('testInstance/pret');

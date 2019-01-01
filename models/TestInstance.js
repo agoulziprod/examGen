@@ -13,7 +13,7 @@ const TestInstance = new Schema({
         type: String,
         questionReponses:
             [{
-                _id:String,
+                _id: String,
                 reponse: String,
                 isTrue: String
             }]
@@ -27,7 +27,13 @@ const TestInstance = new Schema({
         type: Number,
         default: 0
     },
-    lengh: {
+    //hadi hia number dial questions
+    length: {
+        type: Number,
+        required: true
+    },
+    //o hadi hia duree dialo mafia lli ymchi htal test nqder n7tajha bzaaf lmarate
+    duree: {
         type: Number,
         required: true
     },
