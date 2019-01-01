@@ -17,7 +17,19 @@ const TestInstance = mongoose.model('testInstance');
 
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
-  res.render('testInstance/index');
+  TestInstance.find({
+    apprenant:req.user.id
+  })
+  .sort({ date: 'desc' })
+  .then(instances => {
+
+   
+    res.render('testInstance/index',{
+      instances: instances
+    });
+
+  })
+
 
 });
 /*

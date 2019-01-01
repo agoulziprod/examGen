@@ -31,106 +31,28 @@
             <h4>Utiliser le code en dessus pour accéder et passer un examen</h4>
 
 <div class="ui cards four">
-  <div class="card">
-    <div class="content">
-      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
-      <div class="header">
-        Java
-      </div>
-      <div class="meta">
-          Sat Dec 29 2018 00:56:45
-      </div>
-      <div class="description">
-        Elliot requested permission to view your contact details
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="ui two buttons">
-        <div class="ui basic green button">Consulter</div>
-        {{!-- <div class="ui basic red button">Decline</div> --}}
-      </div>
-    </div>
-  </div>
+  {{#each instances}}
     <div class="card">
     <div class="content">
-      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
+      <span class="right floated  ui" ><i class=" icon check"></i>{{score}}</span>
       <div class="header">
         Java
       </div>
       <div class="meta">
-          Sat Dec 29 2018 00:56:45
+          {{date}}
       </div>
       <div class="description">
-        Elliot requested permission to view your contact details
+        desc
       </div>
     </div>
     <div class="extra content">
       <div class="ui two buttons">
-        <div class="ui basic red button">Consulter</div>
+        <a class="ui basic green button" href="/testInstances/details/{{id}}">Consulter</a>
         {{!-- <div class="ui basic red button">Decline</div> --}}
       </div>
     </div>
   </div>
-    <div class="card">
-    <div class="content">
-      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
-      <div class="header">
-        Java
-      </div>
-      <div class="meta">
-          Sat Dec 29 2018 00:56:45
-      </div>
-      <div class="description">
-        Elliot requested permission to view your contact details
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="ui two buttons">
-        <div class="ui basic green button">Consulter</div>
-        {{!-- <div class="ui basic red button">Decline</div> --}}
-      </div>
-    </div>
-  </div>
-    <div class="card">
-    <div class="content">
-      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
-      <div class="header">
-        Java
-      </div>
-      <div class="meta">
-          Sat Dec 29 2018 00:56:45
-      </div>
-      <div class="description">
-        Elliot requested permission to view your contact details
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="ui two buttons">
-        <div class="ui basic green button">Consulter</div>
-        {{!-- <div class="ui basic red button">Decline</div> --}}
-      </div>
-    </div>
-  </div>
-    <div class="card">
-    <div class="content">
-      <span class="right floated  ui" ><i class=" icon check"></i>100</span>
-      <div class="header">
-        Java
-      </div>
-      <div class="meta">
-          Sat Dec 29 2018 00:56:45
-      </div>
-      <div class="description">
-        Elliot requested permission to view your contact details
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="ui two buttons">
-        <div class="ui basic green button">Consulter</div>
-        {{!-- <div class="ui basic red button">Decline</div> --}}
-      </div>
-    </div>
-  </div>
+  {{/each}}
 </div>
 
         </div>
