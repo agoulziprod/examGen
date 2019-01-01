@@ -38,7 +38,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
       } else {
         var newQuestions = new Array();
         var questionReponsesFiltered;
-        var objectQuestions;
+        var objectReponses;
         var objecto;
         // ici la generation du testInstance :D
         let testInstance = new TestInstance();
@@ -67,9 +67,9 @@ router.post('/', ensureAuthenticated, (req, res) => {
                 // console.log('iwa daba nchooof ahadchi kaaml ach fih wach sdqat olla la');
                 // console.log(question)
                 // console.log("olah ma3rft ach kana ffichéé hna");
-                objectQuestions = { questions: questionReponsesFiltered }
+                objectReponses = { reponses: questionReponsesFiltered }
                 // console.log(objectQuestions)
-                objecto = Object.assign({}, question, objectQuestions);
+                objecto = Object.assign({}, question, objectReponses);
                 // console.log('daba nchofo objectoo dialna achno fiiih')
                 // console.log(objecto)
                 newQuestions.push(objecto);
@@ -78,8 +78,20 @@ router.post('/', ensureAuthenticated, (req, res) => {
               console.log('salina hna boocle aji nchofo lobjet kaml ach fih 999999')
               console.log(JSON.stringify(newQuestions, null, 4));
               // hna ghan afficher hadak khona nchofo kidayr f structure dialo
-              testInstance.questions=newQuestions;
-              console.log(testInstance)
+              // var lastObject={'questions':new Questions};
+              // testInstance['questions']=newQuestions;
+              // var newtestInstance = Object.assign( testInstance, lastObject);
+              var newtestInstance={} ;
+
+              // Object.defineProperty(testInstance,'questions',{newQuestions} );
+              objectQuestion = { questions: newQuestions }
+              let objecto2 = Object.assign({}, testInstance, objectQuestion);
+              testInstance=objecto2;
+              // // console.log(testInstance)
+              // console.log('stringify lia lobjet2222 nchoof');
+
+              // console.log(JSON.stringify(testInstance, null, 4));
+              // safi salina daba dabbarna 3la l'objet dialna finally ! ouf ba3da toli 3anae
 
 
             });
