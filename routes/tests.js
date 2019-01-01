@@ -44,7 +44,8 @@ router.get('/', ensureAuthenticated, (req, res) => {
       break;
     case 'apprenant':
       // code block
-      res.redirect('/testInstances');
+      // res.redirect('/testInstances');
+      res.redirect('/testInstances2');
       break;
     default:
   }

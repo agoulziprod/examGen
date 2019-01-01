@@ -92,6 +92,12 @@ router.post('/', ensureAuthenticated, (req, res) => {
 
               // console.log(JSON.stringify(testInstance, null, 4));
               // safi salina daba dabbarna 3la l'objet dialna finally ! ouf ba3da toli 3anae
+              testInstance
+              .save()
+              .then(testInstance => {
+                req.flash('success_msg', 'Le test exist, vous pouvez commencez dés maintenent');
+                res.redirect('/testInstance/'+testInstance._id);
+              })
 
 
             });
@@ -100,9 +106,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
           });
 
 
-        res.render('testInstance/pret', {
-          test: test
-        });
+       
       }
 
 
