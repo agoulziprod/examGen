@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var Empty4 = new Schema({ any: [{}] });
 // Create Schema
 const TestInstance = new Schema({
     test: {
@@ -9,6 +8,7 @@ const TestInstance = new Schema({
         required: true
     },
     questions: [{/*
+        hadchi 3lach commentito 7it dba kigolia chi error f casting o ana nkhalih type any o khalina hanyyyne b roujoula
         _id: String,
         question: String,
         type: String,
