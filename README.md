@@ -47,8 +47,11 @@ __User__ : add role to the model (adding role to distinguish roles : proffesor, 
 ********
 __QuestionInstance__: route and the model
 ### To do  list
+
 ********
 __Question__ : update a question
+********
+__Mongoose__ :get ride of wrapped data made by mongoose in question index
 ********
 __Test search input__ : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
 ********
