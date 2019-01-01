@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+var Empty4 = new Schema({ any: [{}] });
 // Create Schema
 const TestInstance = new Schema({
     test: {
         type: String,
         required: true
     },
-    questions: [{
+    questions: [{/*
         _id: String,
         question: String,
         type: String,
@@ -16,7 +17,7 @@ const TestInstance = new Schema({
                 _id: String,
                 reponse: String,
                 isTrue: String
-            }]
+            }]*/
     }]
     ,
     apprenant: {

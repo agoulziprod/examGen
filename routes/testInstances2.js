@@ -44,20 +44,66 @@ router.post('/', ensureAuthenticated, (req, res) => {
 
       Question.find({
         test: test._id
-      })
-        .sort({ date: 'desc' })
+      }).sort({ date: 'desc' })
         .then(questions => {
-          let cleanedQuestions = [];
-          
-          questions.forEach(el=>{
-            delete el._doc.hasOrder;
-            delete el._doc.creator;
-            delete el._doc.test;
-            delete el._doc.date;
-            delete el._doc.__v;
-            // el._doc.questionReponses="efzf"
-            cleanedQuestions.push(el)
+
+          QuestionReponse.find({
+            // hadi mnni nzidha f shema ndirha bach mayjibch ga3 les questionReponses
+            // test: test._id
           })
+            .sort({ date: 'desc' })
+            .then(questionReponses => {
+
+              let cleanedQuestions = [];
+
+              questions.forEach(el => {
+                delete el._doc.hasOrder;
+                delete el._doc.creator;
+                delete el._doc.test;
+                delete el._doc.date;
+                delete el._doc.__v;
+
+                let questionReponse = questionReponses.filter(p => p.question == el._doc._id);
+                // el._doc.questionReponses=questionReponses;
+                questionReponse.forEach(repEl => {
+                  delete repEl._doc.question;
+                  delete repEl._doc.creator;
+                  delete repEl._doc.__v;
+                  delete repEl._doc.date;
+                })
+                // console.log("hna nchofo wach dkchi ok olla ghanbqaw nl3bo hna")
+                // el.questionReponses = questionReponse;
+
+                let a = Object.assign({}, el._doc, {
+                  questionReponses: questionReponse
+                });
+                // console.log(a)
+                cleanedQuestions.push(a)
+
+              })
+              // console.log("hna object wa7ed lah yrdi 3lik")
+              // console.log(JSON.stringify(cleanedQuestions, null, 4));
+              // console.log("hna object dial testInstace")
+              // console.log(JSON.stringify(testInstanceObject, null, 4));
+
+              // console.log(cleanedQuestions)
+
+              testInstanceObject = Object.assign(testInstanceObject, {
+                questions: cleanedQuestions
+              });
+              // console.log("hna object mn wra skafandri dial testInstace")
+
+              // console.log(JSON.stringify(testInstanceObject, null, 4));
+              new TestInstance(testInstanceObject)
+                .save()
+                .then(instance => {
+                  req.flash('success_msg', `L'instance tsaybaaate 3la slamtk a été ajouté avec succées`);
+                  res.redirect('/');
+                })
+
+            })
+
+
 
 
 
