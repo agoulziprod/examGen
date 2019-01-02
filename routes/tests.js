@@ -78,11 +78,12 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
                   let newElement = element;
                   let newReponses = questionReponse.filter(rep => rep.question == element._id);
                   let objetDialQS = { questionReponse: newReponses }
-                  console.log("hna hna ghanchofo wach l'objet fih array dialna");
+                  
+                  // console.log("hna hna ghanchofo wach l'objet fih array dialna");
                   let objecto = Object.assign({}, newElement, objetDialQS);
-                  console.log("hna lobjet 7arfi nchofo");
-                  console.log(objecto);
-                  console.log("sala lobjet l7arfi");
+                  // console.log("hna lobjet 7arfi nchofo");
+                  // console.log(objecto);
+                  // console.log("sala lobjet l7arfi");
 
                   newArray.push(objecto);
 
