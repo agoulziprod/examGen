@@ -70,15 +70,15 @@
           <a class="ui green ribbon label">{{@index}}</a>
           <h4 class="ui header">
             Question:
-            <div class="sub header">{{_doc.question}}?</div>
+            <div class="sub header">{{question}}?</div>
           </h4>
           <h4 class="ui header">
             Réponses sont ordonnées?
-            <div class="sub header">{{_doc.hasOrder}}</div>
+            <div class="sub header">{{hasOrder}}</div>
           </h4>
           <h4 class="ui header">
             Type
-            <div class="sub header">{{_doc.type}}</div>
+            <div class="sub header">{{type}}</div>
           </h4>
           <div class="ui fluid accordion">
             <div class="header dividing title">
@@ -89,7 +89,7 @@
             </div>
             <div class="content ">
               <p class="transition visible" style="display: block !important;">
-                <form action="/questionReponse/{{_doc._id}}" method="POST" class="ui form">
+                <form action="/questionReponse/{{_id}}" method="POST" class="ui form">
                   <div class="two fields">
                     <div class="sixteen wide field">
                       {{!-- <label>Réponse</label> --}}
