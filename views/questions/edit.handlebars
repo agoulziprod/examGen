@@ -1,52 +1,49 @@
 <section class="body grey column">
   <div class="ui container">
     <div class="ui segment">
-      <h2 class="ui   header">Modifier une question : 
+      <h2 class="ui header">Modifier la question :
       </h2>
-        <div class="ui segment left aligned">
-          <h3 class="centered ">
-            {{question.question}}
-          </h3>
-          <form class="ui form" action="/questions/" method="post">
+      <div class="ui segment left aligned">
+        <h3 class="centered ">
+          {{question.question}}
+        </h3>
+        <form class="ui form" action="/questions" method="post">
           <input type="hidden" name="id" value="{{question.id}}">
-            <div class="field">
-              <label>La question</label>
-              <input type="text" placeholder="question" name="question" value="{{question.question}}">
-            </div>
-            <div class="field">
-              <label>Type</label>
-              <select class="ui dropdown " name="type">
-                <i class="dropdown icon"></i>
-                
-                <option value="{{question.type}}" selected="selected">{{question.type}}</option>
-                <option value="checkbox" >checkbox</option>
-                <option value="radio">radio: une seule choix sera vrai</option>
-              </select>
-            </div>
-            <div class="ui field">
-              <div class=" field">
-                {{#if question.hasOrder}}
-                <div class="ui toggle checkbox">
-                  <input type="checkbox" tabindex="0" class="hidden" checked name="hasOrder" id="hasOrder">
-                  <label for="hasOrder">Les réponses doivent être ordonnées ?</label>
-                </div>
-                {{else}}
-                <div class="ui toggle checkbox">
-                  <input type="checkbox" tabindex="0" class="hidden"  name="hasOrder" id="hasOrder">
-                  <label for="hasOrder">Les réponses doivent être ordonnées ?</label>
-                </div>
-                {{/if}}
+          <div class="field">
+            <label>La question</label>
+            <input type="text" placeholder="question" name="question" value="{{question.question}}">
+          </div>
+          <div class="field">
+            <label>Type</label>
+            <select class="ui dropdown " name="type">
+              <i class="dropdown icon"></i>
+              <option value="{{question.type}}" selected="selected">{{question.type}}</option>
+              <option value="checkbox">checkbox</option>
+              <option value="radio">radio: une seule choix sera vrai</option>
+            </select>
+          </div>
+          <div class="ui field">
+            <div class=" field">
+              {{#if question.hasOrder}}
+              <div class="ui toggle checkbox">
+                <input type="checkbox" tabindex="0" class="hidden" checked name="hasOrder" id="hasOrder">
+                <label for="hasOrder">Les réponses doivent être ordonnées ?</label>
               </div>
-            </div>
-            <div class="ui field">
-              <div class="inline field">
-                <button class="ui button" type="submit">Modifier</button>
+              {{else}}
+              <div class="ui toggle checkbox">
+                <input type="checkbox" tabindex="0" class="hidden" name="hasOrder" id="hasOrder">
+                <label for="hasOrder">Les réponses doivent être ordonnées ?</label>
               </div>
+              {{/if}}
             </div>
-          </form>
-        </div>
-
-
+          </div>
+          <div class="ui field">
+            <div class="inline field">
+              <button class="ui button" type="submit">Modifier</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </section>
