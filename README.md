@@ -31,7 +31,7 @@ once the student passes and submits the responses, the plateforme shows the scor
 ### Technologies :collision:
 one of the goals of this project is to master javascripts technologies, suach as : node.js, express, mongo as database and others .. so in this project we're going to use only JS technologies.
 
-### Completed tesks
+### Completed tasks
 ********
 __Authentification__ : using Passport.js
 ********
@@ -46,14 +46,15 @@ __QuestionReponces__ : CRUD done (and fixed all related bugs)
 __User__ : add role to the model (adding role to distinguish roles : proffesor, student, admin)
 ********
 __QuestionInstance__: route and the model
+********
 __Mongoose__ :get ride of wrapped data made by mongoose in question index
+********
 __Question__ : update a question
 
 
 ### To do  list
 
-********
-********
+
 ********
 __Test search input__ : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
 ********
