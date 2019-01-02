@@ -78,9 +78,9 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
         _id: req.params.id,
         creator: req.user.id
     }).then(() => {
-            req.flash('success_msg', 'La question a été supprimée avec succès');
-            res.redirect('back');
-        })
+        req.flash('success_msg', 'La question a été supprimée avec succès');
+        res.redirect('back');
+    })
 
         .catch(err => {
             console.log('2')
@@ -92,19 +92,44 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
 // update form
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     Question.findOne({
-      _id: req.params.id
+        _id: req.params.id
     })
-      .then(question => {
-        if (question.creator != req.user.id) {
-          req.flash('error_msg', 'Not Authorized');
-          res.redirect('/tests');
-        } else {
-          res.render('questions/edit', {
-            question: question
-          });
-        }
-      });
-  });
+        .then(question => {
+            if (question.creator != req.user.id) {
+                req.flash('error_msg', 'Not Authorized');
+                res.redirect('/tests');
+            } else {
+                res.render('questions/edit', {
+                    question: question
+                });
+            }
+        });
+});
+
+// process update form
+router.put('/', ensureAuthenticated, (req, res) => {
+    console.log('dkhlna hnaaaaaaaaaa put man')
+    Question.findOne({
+        _id: req.body.id
+    })
+        .then(question => {
+            if (question.creator != req.user.id) {
+                req.flash('error_msg', 'Not Authorized');
+                res.redirect('/tests');
+            } else {
+                question.question = req.body.question;
+                question.hasOrder = Boolean(req.body.hasOrder);
+                question.type = req.body.type;
+                question.save()
+                    .then(test => {
+                        req.flash('success_msg', 'La question à été mis à jour');
+                        res.redirect('/tests/details/'+question.test+'/questions');
+                    })
+            }
+        });
+});
+
+
 
 // hna ghandir index les reponses 
 
