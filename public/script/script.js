@@ -59,6 +59,9 @@ $('.ui.accordion')
 $('.ui.radio.checkbox')
   .checkbox()
 ;
+$('.menu .item')
+  .tab()
+;
 
 $('.ui.search')
 .search({

@@ -134,14 +134,17 @@ router.get('/pret/:instanceid', ensureAuthenticated, (req, res) => {
     apprenant: req.user.id,
     id: req.param.instanceid
   })
-    .then(instances => {
+    .then(instance => {
       // njib daba test schema
       Test.findOne({
-        id: instances.test
+        _id: instance.test
       }).then(test => {
 
+        console.log('printi f lia')
+        console.log(test)
+
         res.render('testInstance/pret', {
-          instances: instances,
+          instance: instance,
           test: test
         });
       })

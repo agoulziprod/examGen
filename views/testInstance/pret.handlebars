@@ -1,2 +1,71 @@
-a vos marq pret partez
-{{questions}}
+<section class="body grey column">
+    <div class="ui container">
+        <form action="" method="post">
+
+            <div class="ui segment">
+                <h2 class="ui header">Passer l'examen : {{test.nom}}
+                </h2>
+                <h2 class="ui right aligned" id="duree">50 min</h2>
+
+                <div class="ui segment ">
+                    <h3 class="ui header center aligned green">
+                        {{test.messageDebut}}
+                    </h3>
+                </div>
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <div class="ui vertical fluid tabular menu">
+                            {{!-- hna les tabs --}}
+                            {{#each instance.questions}}
+
+                            <a class="item {{#if @first }}active{{/if}} " data-tab="{{_id}}">
+                                question {{@index}}
+                            </a>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="twelve wide stretched ui  column">
+                        <br>
+                        {{!-- hna le contenu des tabs --}}
+                        {{#each instance.questions}}
+
+                        <div class="ui item attached tab {{#if @first }}active{{/if}}" data-tab="{{_id}}">
+                            <h3 class="ui header">{{question}}?</h3>
+                            {{#each questionReponses}}
+                            <div class="segment ui">
+
+                                <div class="field">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" tabindex="0" class="hidden">
+                                        <label>{{reponse}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+
+
+                        </div>
+
+                        {{/each}}
+
+                    </div>
+
+                </div>
+                <div class="ui segment ">
+                    <h3 class="ui header center aligned green">
+                        {{test.messageFin}}
+                    </h3>
+                </div>
+                <button type="submit" class="ui button blue"><i class="icon clipboard"></i> Envoyer les reponses
+                </button>
+        </form>
+    </div>
+
+    </div>
+
+    {{!-- <div class="ui circular floated inverted blue segment">
+        <h2 class="ui inverted header">
+            11 min
+        </h2>
+    </div> --}}
+</section>
