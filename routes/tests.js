@@ -75,14 +75,14 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
                 let newQuestions = new Array();
                 questions.forEach(element => {
                   // let newReponses = new Array();
-                  let newElement = element;
+                  // let newElement = element;
                   let newReponses = questionReponse.filter(rep => rep.question == element._id);
                   let objetDialQS = { questionReponse: newReponses }
                   
                   // console.log("hna hna ghanchofo wach l'objet fih array dialna");
-                  let objecto = Object.assign({}, newElement, objetDialQS);
-                  // console.log("hna lobjet 7arfi nchofo");
-                  // console.log(objecto);
+                  let objecto = Object.assign({}, element._doc, objetDialQS);
+                  console.log("hna lobjet 7arfi nchofo");
+                  console.log(objecto);
                   // console.log("sala lobjet l7arfi");
 
                   newArray.push(objecto);
@@ -101,6 +101,8 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
                 // Object.assign({}, questions[1], element)
 
                 console.log("hna nchofo couou");
+                console.log(newArray);
+
                 // console.log(JSON.stringify(questions, null, 4));
 
               });
