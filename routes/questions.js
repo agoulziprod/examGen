@@ -20,7 +20,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
     let errors = [];
 
     if (!req.body.question) {
-        errors.push({ text: `veuillez ajouter un question à votre question` });
+        errors.push({ text: `veuillez ajouter une question à votre question` });
     }
     // if(!req.body.hasOrder){
     //   errors.push({text:`veuillez indiquer si votre test contient des réponses ordonnées ou pas`});
@@ -88,6 +88,23 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
         });
 
 });
+
+// update form
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
+    Question.findOne({
+      _id: req.params.id
+    })
+      .then(question => {
+        if (question.creator != req.user.id) {
+          req.flash('error_msg', 'Not Authorized');
+          res.redirect('/tests');
+        } else {
+          res.render('questions/edit', {
+            question: question
+          });
+        }
+      });
+  });
 
 // hna ghandir index les reponses 
 
