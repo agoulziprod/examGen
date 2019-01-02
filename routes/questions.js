@@ -129,11 +129,6 @@ router.put('/', ensureAuthenticated, (req, res) => {
         });
 });
 
-
-
 // hna ghandir index les reponses 
-
-
-
 
 module.exports = router;
