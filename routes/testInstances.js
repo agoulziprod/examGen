@@ -18,17 +18,16 @@ const TestInstance = mongoose.model('testInstance');
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
   TestInstance.find({
-    apprenant:req.user.id
+    apprenant: req.user.id
   })
-  .sort({ date: 'desc' })
-  .then(instances => {
+    .sort({ date: 'desc' })
+    .then(instances => {
 
-   
-    res.render('testInstance/index',{
-      instances: instances
-    });
+      res.render('testInstance/index', {
+        instances: instances
+      });
 
-  })
+    })
 
 
 });
@@ -83,26 +82,18 @@ router.post('/', ensureAuthenticated, (req, res) => {
                   questionReponses: questionReponse
                 });
                 cleanedQuestions.push(a)
-
               })
               testInstanceObject = Object.assign(testInstanceObject, {
                 questions: cleanedQuestions
               });
-
               new TestInstance(testInstanceObject)
                 .save()
                 .then(instance => {
-                  req.flash('success_msg', `L'instance tsaybaaate 3la slamtk a été ajouté avec succées`);
-                  res.redirect('/');
+                  req.flash('success_msg', `votre instance d'examen a été créé avec succées`);
+                  // had la page hia fiha message de debut o ghatsiftni l first question
+                  res.redirect('/testInstances/pret/' + instance._id);
                 })
-
             })
-
-
-
-
-
-
         })
 
       // res.redirect('/testInstances2/cc');
@@ -112,7 +103,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
       req.flash('error_msg', `veuillez s'assurer du code, aucun test ne porte cet id!
       ${err}
       `);
-      res.redirect('/testInstances2');
+      res.redirect('/testInstances');
     });
   // console.log("nchofo wach scope m3ana olla kitfalla 3lina")
   // console.log(testInstanceObject)
@@ -133,6 +124,41 @@ router.post('/', ensureAuthenticated, (req, res) => {
 
 
   // res.render('testInstance/pret');
+
+});
+
+
+// pret page :
+router.get('/pret/:instanceid', ensureAuthenticated, (req, res) => {
+  TestInstance.findOne({
+    apprenant: req.user.id,
+    id: req.param.instanceid
+  })
+    .then(instances => {
+      // njib daba test schema
+      Test.findOne({
+        id: instances.test
+      }).then(test => {
+
+        res.render('testInstance/pret', {
+          instances: instances,
+          test: test
+        });
+      })
+        .catch(err => {
+          req.flash('error_msg', `un erreur est produit, veuillez entrer le code à nouveau
+        ${err}
+        `);
+          res.redirect('/testInstances');
+        })
+    })
+    .catch(err => {
+      req.flash('error_msg', `un erreur est produit, veuillez entrer le code à nouveau
+      ${err}
+      `);
+      res.redirect('/testInstances');
+    })
+
 
 });
 
