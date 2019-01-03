@@ -17,10 +17,3 @@ header{
 .card{
   margin-bottom: 10px !important;
 }
-.floated{
-  border-radius: 100% !important;
-  padding: 50px !important;
-  position: absolute !important;
-  bottom: 150px;
-  left: 100px;
-}

@@ -18,6 +18,7 @@
                             {{!-- hna les tabs --}}
                             {{#each instance.questions}}
 
+
                             <a class="item {{#if @first }}active{{/if}} " data-tab="{{_id}}">
                                 question {{@index}}
                             </a>
@@ -31,9 +32,9 @@
 
                         <div class="ui item attached tab {{#if @first }}active{{/if}}" data-tab="{{_id}}">
                             <h3 class="ui header">{{question}}?</h3>
+                            <input type="hidden" name="type" value="{{type}}">
                             {{#each questionReponses}}
                             <div class="segment ui">
-
                                 <div class="field">
                                     <div class="ui checkbox">
                                         <input type="checkbox" tabindex="0" class="hidden">
