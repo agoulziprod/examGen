@@ -44,6 +44,7 @@ $('.message .close')
       ;
   });
 
+
   $('select.dropdown')
   .dropdown()
   ;

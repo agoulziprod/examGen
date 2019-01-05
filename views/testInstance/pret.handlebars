@@ -1,7 +1,8 @@
 <section class="body grey column">
     <div class="ui container">
-        <form action="" method="post">
-
+        <form action="/reponses" method="post">
+            <input type="hidden" name="test" value="{{test.id}}">
+            <input type="hidden" name="testInstance" value="{{instance._id}}">
             <div class="ui segment">
                 <h2 class="ui header">Passer l'examen : {{test.nom}}
                 </h2>
@@ -17,8 +18,6 @@
                         <div class="ui vertical fluid tabular menu">
                             {{!-- hna les tabs --}}
                             {{#each instance.questions}}
-
-
                             <a class="item {{#if @first }}active{{/if}} " data-tab="{{_id}}">
                                 question {{@index}}
                             </a>
@@ -32,12 +31,12 @@
 
                         <div class="ui item attached tab {{#if @first }}active{{/if}}" data-tab="{{_id}}">
                             <h3 class="ui header">{{question}}?</h3>
-                            <input type="hidden" name="type" value="{{type}}">
+                            {{!-- <input type="hidden" name="type" value="{{type}}"> --}}
                             {{#each questionReponses}}
                             <div class="segment ui">
                                 <div class="field">
-                                    <div class="ui checkbox">
-                                        <input type="checkbox" tabindex="0" class="hidden">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="{{../_id}}" tabindex="0" class="hidden" value="{{_id}}">
                                         <label>{{reponse}}</label>
                                     </div>
                                 </div>
