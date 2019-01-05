@@ -15,6 +15,12 @@ const Reponses = new Schema({
         type: String,
         required: true
     },
+    sentTime:{
+        type: Number,
+        required: true
+
+    }
+    ,
     reponses: [{/*
         hna normalement Map fiha id1:id2 .. id1 dial Question o id2 dial reponses séléctionné
          .. ms since mongoose 4 dosen't support Map object i'll use the array and i'll cnvert it back and ford
