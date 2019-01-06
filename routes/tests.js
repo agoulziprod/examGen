@@ -243,7 +243,7 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
       test.isActive = Boolean(req.body.isActive);
       test.messageDebut = req.body.messageDebut;
       test.messageFin = req.body.messageFin;
-      console.log(test);
+      // console.log(test);
       test.save()
         .then(test => {
           req.flash('success_msg', 'Le test à été mis à jour');

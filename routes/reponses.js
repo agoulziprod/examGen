@@ -112,9 +112,13 @@ router.post('/', ensureAuthenticated, (req, res) => {
           TestInstance
             .findOne({ _id: rep.testInstance })
             .then(testInstance => {
+              console.log('testInstance')
+              console.log(testInstance)
               testInstance.score = score;
-              testInstance
-                .save()
+              
+              console.log('after update')
+              console.log(testInstance)
+              testInstance.save()
                 .then(testInstanceUpdated => {
                   req.flash('success_msg', 'Vos réponses ont été enregistré avec succès, vuos avez eu un score de : '+score);
                   res.redirect('/testInstances');

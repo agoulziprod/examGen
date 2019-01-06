@@ -43,14 +43,15 @@ router.post('/', ensureAuthenticated, (req, res) => {
   Test.findOne({
     isActive: true,
     _id: req.body.test
-  }).sort({ date: 'desc' })
+  })
     .then(test => {
 
       testInstanceObject = Object.assign({}, {
         test: test._doc._id,
         apprenant: req.user.id,
         duree: test._doc.duree,
-        length: test._doc.questions
+        length: test._doc.questions,
+        score:0
       });
 
       Question.find({
@@ -83,6 +84,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
                 });
                 cleanedQuestions.push(a)
               })
+
               testInstanceObject = Object.assign(testInstanceObject, {
                 questions: cleanedQuestions
               });
@@ -91,7 +93,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
                 .then(instance => {
                   req.flash('success_msg', `votre instance d'examen a été créé avec succées`);
                   // had la page hia fiha message de debut o ghatsiftni l first question
-                  res.redirect('/testInstances/pret/' + instance._id);
+                  res.redirect('/testInstances/pret/'+instance._id);
                 })
             })
         })
@@ -130,18 +132,26 @@ router.post('/', ensureAuthenticated, (req, res) => {
 
 // pret page :
 router.get('/pret/:instanceid', ensureAuthenticated, (req, res) => {
+  console.log('\x1b[36m%s\x1b[0m','printi req lli f param')
+        console.log(req.params.instanceid)
+
   TestInstance.findOne({
-    apprenant: req.user.id,
-    id: req.param.instanceid
+    _id: req.params.instanceid,
+    apprenant: req.user.id
   })
     .then(instance => {
+
+      console.log('\x1b[31m%s\x1b[0m', 'printi f lia l instance'); 
+        
+        console.log(instance)
       // njib daba test schema
       Test.findOne({
         _id: instance.test
       }).then(test => {
 
-        console.log('printi f lia')
+        console.log('\x1b[31m%s\x1b[0m','printi f lia test')
         console.log(test)
+
 
         res.render('testInstance/pret', {
           instance: instance,

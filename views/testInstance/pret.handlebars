@@ -2,7 +2,13 @@
     <div class="ui container">
         <form action="/reponses" method="post">
             <input type="hidden" name="test" value="{{test.id}}">
-            <input type="hidden" name="testInstance" value="{{instance._id}}">
+            <input type="hidden" name="testInstance" value="{{instance.id}}">
+            <div class="ui segment">
+                <h3>test</h3>
+                <p>{{test.id}}</p>
+                 <h3>testInstance</h3>
+                <p>{{instance.id}}</p>
+            </div>
             <div class="ui segment">
                 <h2 class="ui header">Passer l'examen : {{test.nom}}
                 </h2>
