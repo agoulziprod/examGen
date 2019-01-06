@@ -65,8 +65,8 @@ router.post('/', ensureAuthenticated, (req, res) => {
     newArray.push(temp);
 
   })
-console.log('hna nchofo array jdid kidayr wach question: rep olla chi haja khra')
-console.log(newArray)
+  console.log('hna nchofo array jdid kidayr wach question: rep olla chi haja khra')
+  console.log(newArray)
 
   //then append it into reponsesObj
   //store it and redirect user
@@ -96,34 +96,38 @@ console.log(newArray)
             .filter(question => question.isTrue == true)
             .map(question => question._id);
 
-            console.log('hna les type')
-  const stringTrueQ=trueQuestions.map(e=>e=String(e))
-  console.log('wach t applika skfkef')
+          console.log('hna les type')
+          const stringTrueQ = trueQuestions.map(e => e = String(e))
 
-  stringTrueQ.forEach(e=>  console.log(typeof e))
+          //daba comparaison mabine array dialna o array lli jbna mn base de donnée
+          let onlyRep = newArray.map(el => {
+            return Object.values(el).toString()
+          })
+          // now i got to compaire every item from this skafandria table to the trueQuestions table
+          let score = 0;
+          onlyRep.forEach(el => {
+            score += stringTrueQ.indexOf(el) > 0 ? 1 : 0;
+          })
+          // now ill store it in the object instance
+          TestInstance
+            .findOne({ _id: rep.testInstance })
+            .then(testInstance => {
+              testInstance.score = score;
+              testInstance
+                .save()
+                .then(testInstanceUpdated => {
+                  req.flash('success_msg', 'Vos réponses ont été enregistré avec succès, vuos avez eu un score de : '+score);
+                  res.redirect('/testInstances');
+                })
+            })
+          // console.log("newArray")
+          // console.log(newArray)
+          // console.log("skafandria")
+          // console.log(skafandria)
+          // console.log(JSON.stringify(skafandria, null, 4));
+          // console.log("trueQuestions")
+          // console.log(trueQuestions)
 
-//daba comparaison mabine array dialna o array lli jbna mn base de donnée
-let onlyRep=newArray.map(el=>{
-  return Object.values(el).toString()})
-// now i got to compaire every item from this skafandria table to the trueQuestions table
-let score=0;
-onlyRep.forEach(el=>{
-console.log("index of"+el+'est')
-console.log(stringTrueQ.indexOf(el)>0? 1 : 0)
-  score+=stringTrueQ.indexOf(el)>0? 1 : 0;
-  console.log("score")
-  console.log(score)
-
-})
-// console.log("newArray")
-// console.log(newArray)
-// console.log("skafandria")
-// console.log(skafandria)
-// console.log(JSON.stringify(skafandria, null, 4));
-// console.log("trueQuestions")
-// console.log(trueQuestions)
-          req.flash('success_msg', 'Vos réponses ont été enregistré avec succès, vuos avez eu un score de : ');
-          res.redirect('/testInstances');
         })
 
 
