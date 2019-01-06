@@ -62,7 +62,7 @@
                         {{test.messageFin}}
                     </h3>
                 </div>
-                <button type="submit" class="ui button blue"><i class="icon clipboard"></i> Envoyer les reponses
+                <button id="submit" type="submit" class="ui button blue"><i class="icon clipboard"></i> Envoyer les reponses
                 </button>
         </form>
     </div>
@@ -76,9 +76,10 @@
     </div> --}}
 </section>
 <script>
-        let dureeS, dureeM={{ test.duree }}-55;
+        let dureeS, dureeM={{ test.duree }}-59;
     let affichageS,affichageM;
     dureeS=dureeM*60;
+    let submitBtn=document.getElementById("submit");
 
     var x = setInterval(function () {
 // khass nraja3 kolchi en sec
@@ -118,8 +119,10 @@ console.log('akhir haja\n'+dureeS)
     // If the count down is over, write some text 
     if (distance == 1) {
         clearInterval(x);
-        //submit.click 
-        document.getElementById("duree").innerHTML = "EXPIRED";
-    }
+        var event = document.createEvent('MouseEvent'); 
+        event.initEvent('click', true, false);
+        submitBtn.dispatchEvent(event);
+        document.getElementById("duree").innerHTML = "Términer";
+ }
 }, 1000);
 </script>
