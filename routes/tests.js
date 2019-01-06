@@ -131,17 +131,27 @@ router.get('/details/:id/responses', ensureAuthenticated, (req, res) => {
         req.flash('error_msg', `vous n'etes pas autorisé !`);
         res.redirect('/tests');
       } else {
-        
+
         TestInstance.find({ test: req.params.id })
           .sort({ date: 'desc' })
           .then(instances => {
 
+            Question.find({ test: test._id }).then(questions => {
+
+              User.find(users=>{
+                
+                 res.render('reponses/index', {
+                instances: instances,
+                test: test,
+                questions: questions
+              });
+              })
+             
+            })
+
 
             // console.log(JSON.stringify(questions, null, 4));
-            res.render('reponses/index', {
-              instances: instances,
-              test: test
-            });
+
           });
       }
     })

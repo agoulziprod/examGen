@@ -21,11 +21,11 @@
                 </a>
                 <a class="item " href="/tests/details/{{test.id}}/questions">
                     Questions
-                    <span class="ui primary horizontal label">{{test.questions}}/{{question.length}}</span>
+                    <span class="ui primary horizontal label">{{test.questions}}/{{questions.length}}</span>
                 </a>
                 <a class="item active" href="/tests/details/{{test.id}}/responses">
                     Réponses reçues
-                    <span class="ui green  horizontal label">12</span>
+                    <span class="ui green  horizontal label">{{instances.length}}</span>
                 </a>
             </div>
             <div class="ui bottom attached segment">
@@ -39,28 +39,17 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
-
+                        {{#each instances}}
                         <tr>
-                            <td>Jill</td>
-                            <td >Denied</td>
-                            <td>None</td>
+                            <td>{{apprenant}}</td>
+                            <td >{{date}}</td>
+                            <td>{{score}}</td>
                         </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>No Action</td>
-                            <td>None</td>
-                        </tr>
-                        <tr>
-                            <td>Jamie</td>
-                            <td >Approved</td>
-                            <td >Requires call</td>
-                        </tr>
+                       {{/each}}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>3 Réponses</th>
+                            <th>{{instances.length}} Réponses</th>
                             <th></th>
                             <th></th>
                         </tr>
