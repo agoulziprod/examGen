@@ -6,7 +6,7 @@
             {{!-- <div class="ui segment">
                 <h3>test</h3>
                 <p>{{test.id}}</p>
-                 <h3>testInstance</h3>
+                <h3>testInstance</h3>
                 <p>{{instance.id}}</p>
             </div> --}}
             <div class="ui segment">
@@ -75,3 +75,51 @@
         </h2>
     </div> --}}
 </section>
+<script>
+        let dureeS, dureeM={{ test.duree }}-55;
+    let affichageS,affichageM;
+    dureeS=dureeM*60;
+
+    var x = setInterval(function () {
+// khass nraja3 kolchi en sec
+
+console.log('dureeS hna f affectation\n'+dureeS)
+
+//ndir l7sab ze3ma nqoss une sec
+--dureeS;
+console.log('dureeS hna wra minus\n'+dureeS)
+
+//o n3awd naja3 les var kimma kano
+dureeM=dureeS/60;
+dureeS=dureeS%60;
+console.log('dureeS/60 \n'+dureeM)
+dureeM=Math.floor(dureeM)
+console.log('derna floor: \n'+dureeM)
+console.log('hna les seconds mn wra le reste \n'+dureeS)
+
+// hna khass n3awd njma3 dkchi f dureeS
+dureeS+=dureeM*60;
+console.log('akhir haja\n'+dureeS)
+
+
+    var countDownDate = {{ test.duree }}* 60;
+    // Get todays date and time
+    //var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = dureeS+dureeM*60;
+
+ 
+
+    // Output the result in an element with id="demo"
+    document.getElementById("duree").innerHTML =
+        + dureeM + "m " + dureeS%60 + "s ";
+
+    // If the count down is over, write some text 
+    if (distance == 1) {
+        clearInterval(x);
+        //submit.click 
+        document.getElementById("duree").innerHTML = "EXPIRED";
+    }
+}, 1000);
+</script>
