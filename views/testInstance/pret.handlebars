@@ -76,7 +76,7 @@
     </div> --}}
 </section>
 <script>
-        let dureeS, dureeM={{ test.duree }}-59;
+        let dureeS, dureeM={{ test.duree }};
     let affichageS,affichageM;
     dureeS=dureeM*60;
     let submitBtn=document.getElementById("submit");
@@ -119,10 +119,11 @@ console.log('akhir haja\n'+dureeS)
     // If the count down is over, write some text 
     if (distance == 1) {
         clearInterval(x);
+        document.getElementById("duree").innerHTML = "Examen términer";
+
         var event = document.createEvent('MouseEvent'); 
         event.initEvent('click', true, false);
         submitBtn.dispatchEvent(event);
-        document.getElementById("duree").innerHTML = "Términer";
  }
 }, 1000);
 </script>

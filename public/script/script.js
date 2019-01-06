@@ -63,6 +63,9 @@ $('.ui.radio.checkbox')
 $('.menu .item')
   .tab()
 ;
+// ila kan chi table sortable nsortiwh malo ykhla3na
+$('table').tablesort();
+
 
 $('.ui.search')
 .search({

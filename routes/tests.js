@@ -28,7 +28,7 @@ router.get('/', ensureAuthenticated, (req, res) => {
             tests: tests,
             role: req.user.role
           });
-          
+
           //i wanna retreive the value of : how much every test have 
 
           // Question.find({ test: req.params.id })
@@ -78,7 +78,7 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
                   // let newElement = element;
                   let newReponses = questionReponse.filter(rep => rep.question == element._id);
                   let objetDialQS = { questionReponse: newReponses }
-                  
+
                   // console.log("hna hna ghanchofo wach l'objet fih array dialna");
                   let objecto = Object.assign({}, element._doc, objetDialQS);
                   console.log("hna lobjet 7arfi nchofo");
@@ -119,6 +119,40 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
 
 });
 
+
+// Question index page
+router.get('/details/:id/responses', ensureAuthenticated, (req, res) => {
+
+  Test.findOne({
+    _id: req.params.id
+  })
+    .then(test => {
+      if (test.creator != req.user.id) {
+        req.flash('error_msg', `vous n'etes pas autorisé !`);
+        res.redirect('/tests');
+      } else {
+        
+        TestInstance.find({ test: req.params.id })
+          .sort({ date: 'desc' })
+          .then(instances => {
+
+
+            // console.log(JSON.stringify(questions, null, 4));
+            res.render('reponses/index', {
+              instances: instances,
+              test: test
+            });
+          });
+      }
+    })
+    .catch(err => {
+      req.flash('error_msg', `une erreur à été produite`);
+      res.redirect('back');
+    })
+    ;
+
+
+});
 // Test details page
 router.get('/details/:id', ensureAuthenticated, (req, res) => {
   Test.findOne({
