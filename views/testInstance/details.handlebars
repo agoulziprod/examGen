@@ -1,18 +1,16 @@
 <section class="body grey column">
     <div class="ui container">
-        <form action="/reponses" method="post">
-            <input type="hidden" name="test" value="{{test.id}}">
-            <input type="hidden" name="testInstance" value="{{instance.id}}">
-            {{!-- <div class="ui segment">
+        <form>
+            <div class="ui segment">
                 <h3>test</h3>
                 <p>{{test.id}}</p>
                  <h3>testInstance</h3>
                 <p>{{instance.id}}</p>
-            </div> --}}
+            </div>
             <div class="ui segment">
                 <h2 class="ui header">Passer l'examen : {{test.nom}}
                 </h2>
-                <h2 class="ui right aligned" id="duree"> <span id="duree">{{test.duree}}</span> min</h2>
+                <h2 class="ui right aligned" id="duree">50 min</h2>
 
                 <div class="ui segment ">
                     <h3 class="ui header center aligned green">
@@ -25,7 +23,7 @@
                             {{!-- hna les tabs --}}
                             {{#each instance.questions}}
                             <a class="item {{#if @first }}active{{/if}} " data-tab="{{_id}}">
-                                question {{inc @index}}
+                                question {{@index}}
                             </a>
                             {{/each}}
                         </div>

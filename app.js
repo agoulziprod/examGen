@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 
+
+
 const app = express();
 
 // Load routes
@@ -33,10 +35,25 @@ mongoose.connect(db.mongoURI, {
   .catch(err => console.log(err));
 
 // Handlebars Middleware
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
-}));
+// app.engine('handlebars', exphbs({
+//   defaultLayout: 'main'
+// }));
+// app.set('view engine', 'handlebars');
+
+/*
+
+var exphbs = require('express-handlebars');
+
+
+*/
+var hbsHelpers = exphbs.create({
+    helpers: require("./helpers/handlebars.js").helpers,
+    defaultLayout: 'main',
+});
+
+app.engine('.handlebars', hbsHelpers.engine);
 app.set('view engine', 'handlebars');
+
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
