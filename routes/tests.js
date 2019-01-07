@@ -13,6 +13,9 @@ const QuestionReponse = mongoose.model('questionReponse');
 require('../models/TestInstance');
 const TestInstance = mongoose.model('testInstance');
 
+require('../models/User');
+const User = mongoose.model('users');
+
 
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
@@ -138,15 +141,38 @@ router.get('/details/:id/responses', ensureAuthenticated, (req, res) => {
 
             Question.find({ test: test._id }).then(questions => {
 
-              User.find(users=>{
-                
-                 res.render('reponses/index', {
-                instances: instances,
-                test: test,
-                questions: questions
-              });
+              User.find().then(users => {
+
+                const mappedUsers=users.map(user => {
+                  return { id: user.id, name: user.name }
+                })
+                const mappedIds=mappedUsers.map(user=>user.id);
+
+                console.log("mappedUsers")
+                console.log(mappedUsers)
+                console.log("mappedIds")
+                console.log(mappedIds)
+
+                instances.forEach(el=>{
+
+                  
+// search the object that has an id equals to a
+let idToSearch=el._doc.apprenant;
+
+let indexOfId=mappedIds.indexOf(idToSearch);
+el._doc.apprenant=mappedUsers[indexOfId].name;
+console.log(el._doc.apprenant)
+
+                })/**/
+                console.log("instances")
+                console.log(instances)
+                res.render('reponses/index', {
+                  instances: instances,
+                  test: test,
+                  questions: questions
+                });
               })
-             
+
             })
 
 
