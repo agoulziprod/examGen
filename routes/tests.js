@@ -72,6 +72,7 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
         Question.find({ test: req.params.id })
           .sort({ date: 'desc' })
           .then(questions => {
+
             QuestionReponse
               .find()
               .then(questionReponse => {
@@ -94,27 +95,28 @@ router.get('/details/:id/questions', ensureAuthenticated, (req, res) => {
                   // console.log(Object.assign(newElement, newReponsesObject));
                   // console.log(JSON.stringify(questions, null, 4));
 
-                  console.log("3la molana");
 
                   // newElement["questionReponses"]=newReponses;
                   // console.log(newElement);
                   // console.log(Object.assign({}, element, newReponses));
                 });
+                TestInstance.find({ test: req.params.id }).then(instances => {
+                  res.render('questions/index', {
+                    question: newArray,
+                    test: test,
+                    instances: instances.length
+                  });
 
+                })
                 // Object.assign({}, questions[1], element)
 
-                console.log("hna nchofo couou");
-                console.log(newArray);
-
                 // console.log(JSON.stringify(questions, null, 4));
+
 
               });
 
             // console.log(JSON.stringify(questions, null, 4));
-            res.render('questions/index', {
-              question: newArray,
-              test: test
-            });
+
           });
       }
     });
@@ -143,29 +145,18 @@ router.get('/details/:id/responses', ensureAuthenticated, (req, res) => {
 
               User.find().then(users => {
 
-                const mappedUsers=users.map(user => {
+                const mappedUsers = users.map(user => {
                   return { id: user.id, name: user.name }
                 })
-                const mappedIds=mappedUsers.map(user=>user.id);
+                const mappedIds = mappedUsers.map(user => user.id);
 
-                console.log("mappedUsers")
-                console.log(mappedUsers)
-                console.log("mappedIds")
-                console.log(mappedIds)
-
-                instances.forEach(el=>{
-
-                  
-// search the object that has an id equals to a
-let idToSearch=el._doc.apprenant;
-
-let indexOfId=mappedIds.indexOf(idToSearch);
-el._doc.apprenant=mappedUsers[indexOfId].name;
-console.log(el._doc.apprenant)
+                instances.forEach(el => {
+                  // search the object that has an id equals to a
+                  let idToSearch = el._doc.apprenant;
+                  el._doc.apprenant = mappedUsers[mappedIds.indexOf(idToSearch)].name;
 
                 })/**/
-                console.log("instances")
-                console.log(instances)
+
                 res.render('reponses/index', {
                   instances: instances,
                   test: test,
@@ -203,10 +194,18 @@ router.get('/details/:id', ensureAuthenticated, (req, res) => {
         Question.find({ test: req.params.id })
           .sort({ date: 'desc' })
           .then(questions => {
-            res.render('tests/details', {
-              test: test,
-              question: questions
-            });
+
+            TestInstance
+            .find({ test: req.params.id })
+            .then(instances => {
+              res.render('tests/details', {
+                test: test,
+                question: questions,
+                instances: instances.length
+              });
+
+            })
+           
           });
 
       }
