@@ -41,8 +41,8 @@
                             {{#each questionReponses}}
                             <div class="segment ui">
                                 <div class="field">
-                                    <div class="ui radio checkbox">
-                                        <input type="radio" name="{{../_id}}" tabindex="0" class="hidden" value="{{_id}}">
+                                    <div class="ui checkbox">
+                                        <input type="{{../type}}" name="{{../_id}}" tabindex="0" class="hidden" value="{{_id}}">
                                         <label>{{reponse}}</label>
                                     </div>
                                 </div>

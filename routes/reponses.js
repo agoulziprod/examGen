@@ -81,7 +81,8 @@ router.post('/', ensureAuthenticated, (req, res) => {
     .save()
     .then(rep => {
       // hna khass n7asbo score o nsiftoh lih
-      QuestionReponse.find({})
+      QuestionReponse
+      .find({})
         .then(lesReponses => {
 
           lesReponses.forEach(el => {
