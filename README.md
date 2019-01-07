@@ -54,11 +54,14 @@ __Question__ : update a question
 __QuestionInstance__: is the instance that will be generated for every student (randomly from the question schema)
 ********
 
-### To do  list
-
 __QuestionInstance__: now the student should be redirected to passe the exam.
 ********
 __Reponses__: recieve reponses from the student and store them in the reponses object => detect the score.
+********
+### To do  list
+
+********
+__Question types__ : adapte views to support both radio and check box.
 ********
 __Test search input__ : got to add an action to the search input ie. whene the proffesor clic on an result he got to be redirected to the test details page .
 ********
