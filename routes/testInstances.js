@@ -14,18 +14,55 @@ require('../models/TestInstance');
 const TestInstance = mongoose.model('testInstance');
 
 
+function shuffle(array) {
+  let currentIndex = array.length
+      , temporaryValue
+      , randomIndex
+      ;
+  while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      //permuter lia les valeurs
+      [array[randomIndex], array[currentIndex]] = [array[currentIndex], array[randomIndex]];
+      /*
+           temporaryValue = array[currentIndex];
+           array[currentIndex] = array[randomIndex];
+           array[randomIndex] = temporaryValue;
+           */
+  }
+  return array;
+}
 
 // Test Index Page
 router.get('/', ensureAuthenticated, (req, res) => {
+
   TestInstance.find({
     apprenant: req.user.id
   })
     .sort({ date: 'desc' })
     .then(instances => {
 
-      res.render('testInstance/index', {
+      Test.find({}).then(tests=>{
+
+        const mappedTests = tests.map(test => {
+          return { id: test.id, name: test.nom }
+        })
+        const mappedIds = mappedTests.map(test => test.id);
+
+        instances.forEach(el => {
+          // search the object that has an id equals to a
+          let idToSearch = el._doc.test;
+          el._doc.test = mappedTests[mappedIds.indexOf(idToSearch)].name;
+
+        })/**/
+
+
+        res.render('testInstance/index', {
         instances: instances
       });
+      })
+
+      
 
     })
 
@@ -84,6 +121,16 @@ router.post('/', ensureAuthenticated, (req, res) => {
                 });
                 cleanedQuestions.push(a)
               })
+              console.log('\x1b[36m%s\x1b[0m','cleanedQuestions avant randomizing')
+              console.log(cleanedQuestions)
+              //hna ghanrandomizi sckafandiate
+              cleanedQuestions =shuffle(cleanedQuestions) 
+
+              console.log('\x1b[36m%s\x1b[0m','cleanedQuestions after effect')
+              
+              console.log(cleanedQuestions)
+              //o hna n limit number dial les questions broojola 
+              cleanedQuestions.length=test.questions;
 
               testInstanceObject = Object.assign(testInstanceObject, {
                 questions: cleanedQuestions
